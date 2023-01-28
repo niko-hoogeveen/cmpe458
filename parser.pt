@@ -171,15 +171,16 @@ program ScannerParser(output, stdIdentifiers, scanSsl, parseSsl, source, parseSt
         { S/SL Rule Table Addresses } {
         Scan = 0;
         Identifier = 230;
+        Comment = 314;
         Integer = 247;
         StringLiteral = 262;
-        Comment = 314;
         }
 
         { S/SL Table Parameters }
         sslTblSize = 339;
         minSslTableValue = -32767;
         maxSslTableValue = 32767;
+
 
 
 { ===== End of contents of scan.def }
@@ -912,6 +913,7 @@ program ScannerParser(output, stdIdentifiers, scanSsl, parseSsl, source, parseSt
             charClassMap[ord(tab)] := lTab;
             charClassMap[ord(blank)] := lBlank;
             charClassMap[ord(quote)] := lQuote;
+            charClassMap[ord('"')] := lQuote;
             charClassMap[ord(backslash)] := lBackslash;
             charClassMap[ord(carriagereturn)] := lCarriageReturn;
             charClassMap[ord('(')] := lLeftParen;
@@ -930,6 +932,12 @@ program ScannerParser(output, stdIdentifiers, scanSsl, parseSsl, source, parseSt
             charClassMap[ord(']')] := lRightBracket;
             charClassMap[ord('{')] := lLeftBrace;
             charClassMap[ord('}')] := lRightBrace;
+            charClassMap[ord('%')] := lPercent;
+            charClassMap[ord('#')] := lHash;
+            charClassMap[ord('!')] := lExclamation;
+            charClassMap[ord('?')] := lQuestion;
+            charClassMap[ord('$')] := lDollar;
+
 
             { Initialize the scan ssl table }
             reset(scanSsl {==, NscanSsl ==} );
