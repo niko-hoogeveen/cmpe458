@@ -167,6 +167,7 @@ Scan :
                 .pRightBracket
             | '%':
                 @Comment
+                .pPercent
             | '#':
                 .pHash
             | '!': 
