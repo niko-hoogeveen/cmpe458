@@ -25,7 +25,7 @@ Input :
         lDot            '.'
         lComma          ','
         lSemicolon      ';'
-        lQuote          
+        lQuote          '"'
         lBackslash
         lLeftAngle      '<'
         lRightAngle     '>'
@@ -165,6 +165,23 @@ Scan :
                 .pLeftBracket
             | ']':
                 .pRightBracket
+            | '%':
+                @Comment
+            | '#':
+                .pHash
+            | '!': 
+                [
+                    | '=':
+                        .pNotEqual
+                    |*:
+                        .pExclamation
+                ]
+            | '?':
+                .pQuestion
+            | '$':
+                .pDollar
+            | '*':
+                .pStar
             | ',':
                 .pComma
             | ':':
@@ -213,23 +230,6 @@ Scan :
                     | *:
                         .pGreater
                 ]
-            | '%':
-                @Comment
-            | '#':
-                .pHash
-            | '!':
-                [
-                    | '=':
-                        .pNotEqual
-                    |*:
-                        .pExclamation
-                ]
-            | '?':
-                .pQuestion
-            | '$':
-                .pDollar
-            | '*':
-                .pStar
             | lNewPage:
             | lEndFile:
                 .pEndFile
