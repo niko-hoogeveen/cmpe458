@@ -14,6 +14,8 @@
 %     no separator between them.
 
 Input : 
+% MODIFICATIONS MADE:
+% Added lPercent, lHash, lExclamation, lQuestion, lDollar to input token list
         lLetter 
         firstCharClass = lLetter 
         lDigit
@@ -25,7 +27,7 @@ Input :
         lDot            '.'
         lComma          ','
         lSemicolon      ';'
-        lQuote          '"'
+        lQuote          '"' % MODIFICATIONS MADE: Changed lQuote to recognize double quote character “ instead of single quote
         lBackslash
         lLeftAngle      '<'
         lRightAngle     '>'
@@ -54,6 +56,10 @@ Output :
         %   Tokens pDiv through pRepeat are keywords which will be 
         %   separated from user defined identifiers by the Screener.
         %   This Scanner treats them all as identifiers.
+
+        % MODIFICATIONS MADE:
+        % Removed old output keyword tokens and added Quby keywords (using, val, etc)
+
         pDiv 
         firstKeywordToken = pDiv
         pMod
@@ -94,12 +100,16 @@ Output :
 
         % Non-compound tokens - 
         %   These tokens simply represent themselves.
+
+        % MODIFICATIONS MADE:
+        % Added new non-compound output tokens (pPercent, pHash, etc)
+
         pNewLine
         pEndFile
         pPlus
         pMinus
         pStar
-        pDoubleEquals
+        pDoubleEquals % MODIFICATIONS MADE: Changed pColonEquals token to pDoubleEquals
         pDot
         pComma
         pSemicolon
@@ -165,6 +175,12 @@ Scan :
                 .pLeftBracket
             | ']':
                 .pRightBracket
+
+        # MODIFICATION MADE:
+        # Modified old comment token ‘{‘ to new comment token ‘%’ with same functionality
+        # Added ‘!=’ case to ‘!’ token case to emit pNotEqual.
+        # Added cases for ‘#’, ‘!’, ‘?’ and ‘$’. These cases emit pHash, pExclamation, pQuestion and pDollar respectively
+
             | '%':
                 @Comment
                 .pPercent
@@ -197,6 +213,10 @@ Scan :
                         @Identifier
                     | *:
                 ]
+
+        # MODIFICATION MADE:
+        # Removed old pColonEquals case for ‘:’ token, added code to emit pDoubleEquals as an additional case for ‘=’ token.
+
             | '=':
                 [
                     | '=':
@@ -291,6 +311,9 @@ StringLiteral :
                 ?
                 oBufferSave
         ]};
+
+% MODIFICATIONS MADE
+% Removed @AlternateComment for ‘(*’ comments
 
 Comment :
         % Discard the contents of a comment

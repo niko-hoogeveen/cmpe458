@@ -910,6 +910,9 @@ program ScannerParser(output, stdIdentifiers, scanSsl, parseSsl, source, parseSt
                 i := i + 1
             until i > ord('z');
 
+            { MODIFICATION MADE: Removed old mapping for single quote and added mapping for double quote character }
+            { MODIFICATION MADE: Added new mappings for the Quby input tokens }
+
             charClassMap[ord(tab)] := lTab;
             charClassMap[ord(blank)] := lBlank;
             charClassMap[ord('"')] := lQuote;

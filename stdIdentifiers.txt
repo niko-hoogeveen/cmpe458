@@ -5,6 +5,9 @@
 %   These must be in the exact same order as the keyword token definitions 
 %   in the Output section of scan.ssl and the Input section of parser.ssl
 
+% MODIFICATIONS MADE:
+% Removed old keywords (not, begin, procedure, etc) and added new corresponding Quby keywords (using, val, def, etc)
+
 div
 mod
 or
@@ -37,6 +40,9 @@ elsif
 %   type definition in semantic.ssl.  
 
 % Predeclared type names
+
+% MODIFICATIONS MADE:
+% Changed predefined type char to String
 integer
 String
 boolean
