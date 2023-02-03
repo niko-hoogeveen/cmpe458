@@ -2,7 +2,7 @@ Purpose of test case:
 Ensure that the dollar symbol is screened to the corresponding parser token, and completes the correct functionality within the parser
 
 Output vs expected:
--It is expected that inputting "$" will call the pExclamation token
+-It is expected that inputting "$" will call the pDollar token
 -pDollar is called as per the eOutput file
 
 Issues:
