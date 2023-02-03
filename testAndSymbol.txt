@@ -1,0 +1,9 @@
+Purpose of test case:
+Ensure that the ampersand symbol is screened to the corresponding error token, and completes the correct functionality within the parser
+
+Output vs expected:
+-It is expected that inputting "&" will call the eIllegalChar token
+-eIllegalChar is called as per the eOutput file
+
+Issues:
+None
