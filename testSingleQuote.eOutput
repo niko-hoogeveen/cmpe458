@@ -1,0 +1,13 @@
+ #eIllegalChar
+  .pIdentifier
+  % Output token text 'this'
+  .pIdentifier
+  % Output token text 'should'
+  .pIdentifier
+  % Output token text 'not'
+  .pIdentifier
+  % Output token text 'be'
+  .pIdentifier
+  % Output token text 'allowed'
+ #eIllegalChar
+ .pEndFile
