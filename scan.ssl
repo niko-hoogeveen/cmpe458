@@ -176,10 +176,10 @@ Scan :
             | ']':
                 .pRightBracket
 
-        # MODIFICATION MADE:
-        # Modified old comment token ‘{‘ to new comment token ‘%’ with same functionality
-        # Added ‘!=’ case to ‘!’ token case to emit pNotEqual.
-        # Added cases for ‘#’, ‘!’, ‘?’ and ‘$’. These cases emit pHash, pExclamation, pQuestion and pDollar respectively
+        % MODIFICATION MADE:
+        % Modified old comment token ‘{‘ to new comment token ‘%’ with same functionality
+        % Added ‘!=’ case to ‘!’ token case to emit pNotEqual.
+        % Added cases for ‘#’, ‘!’, ‘?’ and ‘$’. These cases emit pHash, pExclamation, pQuestion and pDollar respectively
 
             | '%':
                 @Comment
@@ -214,8 +214,8 @@ Scan :
                     | *:
                 ]
 
-        # MODIFICATION MADE:
-        # Removed old pColonEquals case for ‘:’ token, added code to emit pDoubleEquals as an additional case for ‘=’ token.
+        % MODIFICATION MADE:
+        % Removed old pColonEquals case for ‘:’ token, added code to emit pDoubleEquals as an additional case for ‘=’ token.
 
             | '=':
                 [
