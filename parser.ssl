@@ -190,6 +190,12 @@ Block :
                 pIdentifier  .sIdentifier
                 @ProcedureHeading
                 @Block  ';'
+            | 'module': %MODIFICATION: Added new declaration for module
+                .sModule
+                % module name
+                pIdentifier  .sIdentifier
+                @ModuleHeading
+                @Block  ';'
             | pIdentifier:
                 @AssignmentOrCallStmt
             | 'if':
@@ -347,6 +353,13 @@ ProcedureHeading :
         ]
         ';'
         .sParmEnd
+        .sBegin
+        ';' @Block
+        .sEnd;
+        
+%MODIFICATION: Added ModuleHeading
+ModuleHeading :
+        % Accept zero procedure formal parameter declarations.
         .sBegin
         ';' @Block
         .sEnd;
