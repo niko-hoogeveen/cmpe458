@@ -152,9 +152,9 @@ rules
 Program :
         'using'  .sProgram
         % program name
-        pIdentifier
+        % pIdentifier
         % program parameters
-        '('
+        % '('
         {
             pIdentifier  .sIdentifier
             [
@@ -163,52 +163,86 @@ Program :
                     >
             ]
         }
-        ')'
+        % ')'
         .sParmEnd
-        .sBegin
-        ';' @Block 
-        .sEnd;
+        @Block;
 
 Block :
-        % Strictly speaking, standard Pascal requires that declarations
-        % appear only in the order consts, types, vars, procedures.
-        % We allow arbitrary intermixing of these instead to preserve
-        % programmer sanity.
-        {[
-            | 'val':
-                .sConst
-                @ConstantDefinitions
-            | 'type':
-                .sType
-                @ValueOrQuby
-            | 'var':
-                .sVar
-                @VariableDeclarations
-            | 'def':
-                .sProcedure
-                % procedure name
-                pIdentifier  .sIdentifier
-                @ProcedureHeading
-                @Block  ';'
-            | 'module': %MODIFICATION: Added new declaration for module
-                .sModule
-                % module name
-                pIdentifier  .sIdentifier
-                @ModuleHeading
-                @Block  ';'
-            | pIdentifier:
-                @AssignmentOrCallStmt
-            | 'if':
-                @IfStmt
-            | 'while':
-                @WhileStmt
-            | 'case':
-                @CaseStmt
-            | ';':
-                .sNullStmt
-            | *:
-                >
-        ]};
+    .sBegin
+    @DeclarationsAndStatements
+    .sEnd;
+    
+DeclarationsAndStatements:
+% val, var, type declarations
+    {[
+        | 'val':
+            .sConst
+            @ConstantDefinitions
+        | 'type':
+            .sType
+            @ValueOrQuby
+        | 'var':
+            .sVar
+            @VariableDeclarations
+        | 'def':
+            .sProcedure
+            % procedure name
+            [
+                | '*':
+                    .sPublic pIdentifier .sIdentifier
+                | *:
+                    pIdentifier  .sIdentifier
+            ]
+            @ProcedureHeading
+            @Block
+            'end'
+        | 'module':
+            .sModule
+            pIdentifier .sIdentifier
+            % add shit here
+            @Block
+            'end'
+        | pIdentifier:
+            @AssignmentOrCallStmt
+        | 'if':
+            @IfStmt
+            'end'
+        | 'unless':
+            @UnlessStmt
+            'end'
+        | 'while':
+            @WhileStmt
+        | 'case': 
+            @CaseStmt
+        | 'do':
+            % add shit here
+        | ';':
+        | pPercent:
+        | *:
+            >
+    ]};
+
+Statements: 
+% if while, case etc 
+    {[
+        | pIdentifier:
+            @AssignmentOrCallStmt
+        | 'if':
+            @IfStmt
+            'end'
+        | 'unless':
+            @UnlessStmt 
+            'end'
+        | 'while':
+            @WhileStmt
+        | 'case': 
+            @CaseStmt
+        | 'do':
+            % add shit here
+        | ';':
+        | *:
+            >
+    ]};
 
 ConstantDefinitions :
         % Accept one or more named constant definitions
@@ -217,7 +251,7 @@ ConstantDefinitions :
         {[
             | pIdentifier:
                 .sIdentifier
-                '=' @ConstantValue
+                '=' @ConstantValue 
             | *:
                 >
         ]};
@@ -317,19 +351,20 @@ OptionallySignedIntegerConstant :
 VariableDeclarations :
         % Accept one or more variable declarations.
         pIdentifier  .sIdentifier
-        ':'  @ValueOrQuby 
         {[
-            | pIdentifier:
-                .sIdentifier
-                ':'  @ValueOrQuby  
+            | ',':
+                pIdentifier .sVar .sIdentifier
             | *:
                 >
-        ]};
+        ]}
+        ':' @ValueOrQuby;
 
 ProcedureHeading :
         % Accept zero or more procedure formal parameter declarations.
+        '('
         [
-            | '(':
+            | ')':
+            | *:
                 {
                     % formal parameter identifier
                     [
@@ -337,32 +372,20 @@ ProcedureHeading :
                             pIdentifier  .sIdentifier
                             .sVar
                         | *:
-                            pIdentifier  .sIdentifier
+                            pIdentifier .sIdentifier
                     ]
                     ':'
                     % type identifier
                     pIdentifier  .sIdentifier
                     [
-                        | ';':
+                        | ',':
                         | *:
                             >
                     ]
                 }
-                ')'
-            | *:
+            ')'
         ]
-        ';'
-        .sParmEnd
-        .sBegin
-        ';' @Block
-        .sEnd;
-        
-%MODIFICATION: Added ModuleHeading
-ModuleHeading :
-        % Accept zero procedure formal parameter declarations.
-        .sBegin
-        ';' @Block
-        .sEnd;
+        .sParmEnd;
 
 Statement :
         [
@@ -443,12 +466,30 @@ IfStmt :
         .sIfStmt
         @Expression
         .sExpnEnd
-        'then'  .sThen
-        @Statement
+        'then'  .sThen .sBegin
+        @DeclarationsAndStatements
+        .sEnd
         [
             | 'else':
-                .sElse
-                @Statement
+                .sElse .sBegin
+                @DeclarationsAndStatements
+                .sEnd
+            | *:
+        ];
+
+UnlessStmt:
+        .sIfStmt
+        @Expression
+        .sNot
+        .sExpnEnd
+        'then' .sThen .sBegin 
+        @DeclarationsAndStatements
+        .sEnd
+        [
+            | 'else':
+                .sElse .sBegin
+                @DeclarationsAndStatements
+                .sEnd
             | *:
         ];
 
@@ -456,22 +497,20 @@ CaseStmt :
         .sCaseStmt
         @Expression
         .sExpnEnd
-        'of'
-        @CaseAlternative
         {[
-            | ';':
-                % since case alternatives cannot be null, allow
-                % for the common situation of an extra semicolon
-                % at the end of the list of case alternatives.
-                [
-                    | 'end':
-                        >
-                    | *:
-                        @CaseAlternative
-                ]
-            | 'end':
+            | 'when' :
+                @CaseAlternative
+            | *:
                 >
         ]}
+        [
+            | 'else':
+                .sElse .sBegin
+                @DeclarationsAndStatements
+                .sEnd
+            | *:
+        ]
+        'end'
         .sCaseEnd;
 
 CaseAlternative :
@@ -486,8 +525,10 @@ CaseAlternative :
                     >
             ]
         }
-        .sLabelEnd
-        ':'  @Statement;
+        'then'
+        .sBegin
+        @DeclarationsAndStatements
+        .sEnd;
 
 WhileStmt :
         .sWhileStmt
