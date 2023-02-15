@@ -321,6 +321,10 @@ VariableDeclarations :
         ]};
 
 ProcedureHeading :
+        'def' .sProcedure
+        %procedure name
+        %NEED TO ADD VARIATION FOR PUBLIC STATEMENT, WILL BRING THIS UP ON CALL
+        pIdentifier
         % Accept zero or more procedure formal parameter declarations.
         [
             | '(':
@@ -346,7 +350,10 @@ ProcedureHeading :
             | *:
         ]
         ';'
-        .sParmEnd;
+        .sParmEnd
+        .sBegin
+        ';' @Block
+        .sEnd;
 
 Statement :
         [
