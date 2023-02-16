@@ -139,7 +139,7 @@ Output :
         sEndOfFile
         sPublic
         sModule
-        sDoStmt
+        sDo
         sBreakif
         sSubstring
         sLength
@@ -215,31 +215,9 @@ DeclarationsAndStatements:
         | 'case': 
             @CaseStmt
         | 'do':
-            % add shit here
+            @DoStmt
         | ';':
         | pPercent:
-        | *:
-            >
-    ]};
-
-Statements: 
-% if while, case etc 
-    {[
-        | pIdentifier:
-            @AssignmentOrCallStmt
-        | 'if':
-            @IfStmt
-            'end'
-        | 'unless':
-            @UnlessStmt 
-            'end'
-        | 'while':
-            @WhileStmt
-        | 'case': 
-            @CaseStmt
-        | 'do':
-            % add shit here
-        | ';':
         | *:
             >
     ]};
@@ -387,19 +365,6 @@ ProcedureHeading :
         ]
         .sParmEnd;
 
-Statement :
-        [
-            | pIdentifier:
-                @AssignmentOrCallStmt
-            | 'if':
-                @IfStmt
-            | 'while':
-                @WhileStmt
-            | 'case':
-                @CaseStmt
-            | *:
-                .sNullStmt
-        ];
 
 AssignmentOrCallStmt :
         [
@@ -450,29 +415,19 @@ CallStmt :
         ]
         .sParmEnd;
 
-BeginStmt :
-        .sBegin
-        {
-            @Statement
-            [
-                | ';':
-                | 'end':
-                    .sEnd
-                    >
-            ]
-        };
-
 IfStmt :
         .sIfStmt
         @Expression
         .sExpnEnd
-        'then'  .sThen .sBegin
-        @DeclarationsAndStatements
-        .sEnd
+        'then'  .sThen 
+        @Block
         [
             | 'else':
+                .sElse 
+                @Block
+            | 'elsif': 
                 .sElse .sBegin
-                @DeclarationsAndStatements
+                @IfStmt
                 .sEnd
             | *:
         ];
@@ -482,14 +437,12 @@ UnlessStmt:
         @Expression
         .sNot
         .sExpnEnd
-        'then' .sThen .sBegin 
-        @DeclarationsAndStatements
-        .sEnd
+        'then' .sThen 
+        @Block
         [
             | 'else':
-                .sElse .sBegin
-                @DeclarationsAndStatements
-                .sEnd
+                .sElse 
+                @Block
             | *:
         ];
 
@@ -505,9 +458,8 @@ CaseStmt :
         ]}
         [
             | 'else':
-                .sElse .sBegin
-                @DeclarationsAndStatements
-                .sEnd
+                .sElse 
+                @Block
             | *:
         ]
         'end'
@@ -526,30 +478,28 @@ CaseAlternative :
             ]
         }
         'then'
-        .sBegin
-        @DeclarationsAndStatements
-        .sEnd;
+        @Block;
 
 WhileStmt :
         .sWhileStmt
         @Expression
         .sExpnEnd
         'do'
-        @Statement;
+        @Block;
 
-% RepeatStmt :
-%        .sRepeatStmt
-%        {
-%            @Statement
-%            [
-%                | ';':
-%                | 'until':
-%                    .sRepeatEnd
-%                    >
-%            ]
-%        }
-%        @Expression
-%       .sExpnEnd;
+DoStmt :   
+        .sDo
+        @Block 
+        [
+            | 'break':
+                'if'
+                .sBreakif 
+                @Expression 
+                .sExpnEnd
+                @Block
+            | *:
+        ]
+        'end';
 
 Expression :
         @SimpleExpression
@@ -600,11 +550,22 @@ Term :
                 @Factor  .sModulus
             | 'and':
                 .sInfixAnd  @Factor  .sAnd
+            | '?':
+                @Factor .sIndex
             | *:
                 >
         ]};
-
+    
 Factor :
+        @SubFactor 
+        {[
+            | '$':
+                @SubFactor '..' @SubFactor .sSubstring
+            | *: 
+                >
+        ]};
+
+SubFactor :
         [
             | pIdentifier:
                 .sIdentifier
@@ -613,9 +574,12 @@ Factor :
                 .sInteger
             | '(':
                 @Expression  ')'
-            | pExclamation:
-                @Factor
+            | '!':
+                @SubFactor
                 .sNot
+            | '#':
+                @SubFactor 
+                .sLength
             | pStringLiteral:
                 .sStringLiteral
             | 'file':
