@@ -1,0 +1,9 @@
+Purpose of test case:
+Ensure that the not equal symbol is screened to the corresponding parser token, and completes the correct functionality within the parser
+
+Output vs expected:
+-It is expected that inputting "!=" will call the pNotEqual token
+-pNotEqual is called as per the eOutput file
+
+Issues:
+None

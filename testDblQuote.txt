@@ -1,9 +1,0 @@
-Purpose of test case:
-Ensure that the string in quotes is screened to the corresponding parser token as a string literal, and completes the correct functionality within the parser
-
-Output vs expected:
--It is expected that inputting any line in double quotes will call the pStringLiteral token and output the text in the string surrounded by quotes
--pStringLiteral is called and the text is outputted as a string as per the eOutput file
-
-Issues:
-None
