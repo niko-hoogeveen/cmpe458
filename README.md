@@ -13,7 +13,7 @@ Phase 2: Parser Files
     - Run the following commands:
           - cd ..
           - ssltrace "ptc -o2 -t2 -L lib/pt test/test.pt" lib/pt/parser.def -e
-    *Note: You must change the name of "test.pt" to the specific file name of the test you are trying to run. Optionally, you can copy and paste the contents of the test     are running to a test.pt file on your VM, that way you dont have to crowd your VM with a shit ton of files. See phase 2 test suite folder in this git for a complete     test suite file with all the tests that must be run. 
+    - *Note: You must change the name of "test.pt" to the specific file name of the test you are trying to run. Optionally, you can copy and paste the contents of the test are running to a test.pt file on your VM, that way you dont have to crowd your VM with a shit ton of files. See phase 2 test suite folder in this git for a complete test suite file with all the tests that must be run. 
   - Instructions for creating test files:
       - Go into Phase 2 Test Suite folder and open testSuite.pt
       - Create a new file for each test and add them to Phase 2 Test Suite (with meaningful names!)
