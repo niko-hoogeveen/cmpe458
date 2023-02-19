@@ -1,1 +1,9 @@
+Purpose of test case:
+Ensure that the compiler can comprehend and recognize do statements
 
+Output vs expected:
+-Expected output is that program can identify and respond with the corresponding postfix for a do operation/loop
+-Compiler returns do postfix tokens
+
+Issues:
+None
