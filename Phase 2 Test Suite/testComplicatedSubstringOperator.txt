@@ -1,1 +1,9 @@
+Purpose of test case:
+Ensure that the compiler can comprehend complex substring operations
 
+Output vs expected:
+-Expected output is that program can identify and divide strings accordingly to substring operations in complex formats
+-Substring operator was understood even within complex formats given, and was returned in parser postfix stream
+
+Issues:
+None
