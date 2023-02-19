@@ -1,1 +1,9 @@
+Purpose of test case:
+Ensure that the compiler can seperate and complete do and if operations within the same input
 
+Output vs expected:
+-Expected output is that program can identify and divide the routine accorsingly to the do and if placements
+-Do and if components were broken up in the postfix and were dealt with accordingly
+
+Issues:
+None
