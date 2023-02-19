@@ -1,1 +1,9 @@
+Purpose of test case:
+Ensure that the compiler can understand complex value declarations
 
+Output vs expected:
+-Expected output is that program can identify declarations and declared values and output program initilization in a different format
+-Declarations were recieved and system created corresponding indexes and values
+
+Issues:
+None
