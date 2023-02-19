@@ -1,1 +1,9 @@
+Purpose of test case:
+Ensure that the compiler can understand case statements and logic of statements made within case structure
 
+Output vs expected:
+-Expected output is that program can identify a case statement is present and create the corresponding cases
+-Cases were produced with corresponding integers for corresponding cases
+
+Issues:
+None
