@@ -17,6 +17,9 @@ Input :
         % Keywords must be first both here and in stdIdentifiers,
         % and they must appear in the exact same order
 
+        % MODIFICATION MADE
+        % Modified parser input token list to match scanner/screener output
+
         pDiv                    'div'
         firstKeywordToken = pDiv
         pMod                    'mod'
@@ -86,6 +89,11 @@ Input :
         lastSyntaxToken = pDollar;
 
 Output :
+
+        % MODIFICATION MADE
+        % Updated parser output tokens to match Quby spec
+        % Also removed some tokens such as sRepeatStmt that are uneeded
+
         sIdentifier 
         firstSemanticToken = sIdentifier
         firstCompoundSemanticToken = sIdentifier
@@ -149,6 +157,10 @@ Output :
 
 rules
 
+% MODIFICATION MADE
+% Changed program rule to consume 'using' instead of 'program'
+% Deleted first .pIdentifier output because there is no program name in Quby
+
 Program :
         'using'  .sProgram
         % program name
@@ -167,10 +179,18 @@ Program :
         .sParmEnd
         @Block;
 
+% MODIFICATION MADE
+% Block rule outputs .sBegin, calls main DeclarationsAndStatements function, and emits .sEnd
+
 Block :
     .sBegin
     @DeclarationsAndStatements
     .sEnd;
+    
+% MODIFICATION MADE
+% DeclarationsAndStatements is the main rule for handing most code
+% Handles Quby sytanx for if, unless, case, do, etc.
+% Removed need for semi-colons (they are just consumed)
     
 DeclarationsAndStatements:
 % val, var, type declarations
@@ -183,7 +203,9 @@ DeclarationsAndStatements:
             @ValueOrQuby
         | 'var':
             .sVar
-            @VariableDeclarations
+            @VariableDeclarations        
+% MODIFICATION MADE
+% Added case for def       
         | 'def':
             .sProcedure
             % procedure name
@@ -196,17 +218,18 @@ DeclarationsAndStatements:
             @ProcedureHeading
             @Block
             'end'
+% MODIFICATION MADE
+% Added case for module
         | 'module':
             .sModule
             pIdentifier .sIdentifier
-            % add shit here
             @Block
             'end'
         | pIdentifier:
             @AssignmentOrCallStmt
         | 'if':
             @IfStmt
-            'end'
+            'end' 
         | 'unless':
             @UnlessStmt
             'end'
@@ -221,6 +244,9 @@ DeclarationsAndStatements:
         | *:
             >
     ]};
+
+% MODIFICATION MADE
+% Changed constantDefinitions to accomodate Quby syntax
 
 ConstantDefinitions :
         % Accept one or more named constant definitions
@@ -256,6 +282,10 @@ UnsignedIntegerConstant :
             | pInteger:
                 .sInteger
         ];
+
+
+% MODIFICATION MADE
+% Added ValueOrQuby to accomodate Quby clauses
 
 ValueOrQuby:
     % accepts either a constant value or a quby clause
@@ -326,6 +356,9 @@ OptionallySignedIntegerConstant :
                 @UnsignedIntegerConstant
         ];
 
+% MODIFICATION MADE
+% Changed variableDeclarations to accomodate Quby syntax and changes to block rule
+
 VariableDeclarations :
         % Accept one or more variable declarations.
         pIdentifier  .sIdentifier
@@ -337,6 +370,8 @@ VariableDeclarations :
         ]}
         ':' @ValueOrQuby;
 
+% MODIFICATION MADE
+% Modified to allow multiple inputs to functions and to allow for cases without parameters
 ProcedureHeading :
         % Accept zero or more procedure formal parameter declarations.
         '('
@@ -415,6 +450,9 @@ CallStmt :
         ]
         .sParmEnd;
 
+% MODIFICATION MADE
+% Added call to new @Block rule to handle all declarations and statements that could be in an if statement
+% Added a check for new elsif syntax and emits a .sElse token (opted not to include a .sElsif token)
 IfStmt :
         .sIfStmt
         @Expression
@@ -432,6 +470,8 @@ IfStmt :
             | *:
         ];
 
+% MODIFICATION MADE
+% Unless statement handling added, almost the same as an IfStmt except it emits an .sNot after @Expression (and doesn't include elsif)
 UnlessStmt:
         .sIfStmt
         @Expression
@@ -446,6 +486,11 @@ UnlessStmt:
             | *:
         ];
 
+% MODIFICATION MADE
+% Modified to handle logic for new case statments
+% No more need to consume 'of' token
+% Added a case for when
+% Added support for default else case in Quby syntax
 CaseStmt :
         .sCaseStmt
         @Expression
@@ -480,6 +525,8 @@ CaseAlternative :
         'then'
         @Block;
 
+% MODIFICATION MADE
+% Calls @Block rule instead if old statement rule
 WhileStmt :
         .sWhileStmt
         @Expression
@@ -487,6 +534,10 @@ WhileStmt :
         'do'
         @Block;
 
+% MODIFICATION MADE
+% Replaced repeat statement with do, following Quby specs
+% Calls block to handle declares and stmts
+% handles break if statements which contain and expression and another @Block rule
 DoStmt :   
         .sDo
         @Block 
@@ -555,7 +606,10 @@ Term :
             | *:
                 >
         ]};
-    
+
+% MODIFICATION MADE
+% New factor rule to be called before old factor rule (now SubFactor)
+% Allows for new $ operator to take precendence over SubFactor operators
 Factor :
         @SubFactor 
         {[
@@ -565,6 +619,8 @@ Factor :
                 >
         ]};
 
+% MODIFICATION MADE
+% Added ? and # operators to give them the same precedence as operators like !, (, etc.
 SubFactor :
         [
             | pIdentifier:
