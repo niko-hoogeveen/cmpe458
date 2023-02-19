@@ -1,1 +1,9 @@
+Purpose of test case:
+Ensure that the compiler can comprehend module declarations
 
+Output vs expected:
+-Expected output is for program to return .sModule postfix to recognize module declarations
+-Module was returned in the postfix, displaying that the parser understands module declarations
+
+Issues:
+None
