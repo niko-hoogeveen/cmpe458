@@ -1,1 +1,9 @@
+Purpose of test case:
+Ensure that the compiler can comprehend and recognize if statements
 
+Output vs expected:
+-Expected output is that program can identify and respond with the corresponding postfix for a if operation/loop
+-Compiler returns if postfix tokens
+
+Issues:
+None
