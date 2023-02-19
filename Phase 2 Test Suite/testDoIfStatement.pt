@@ -1,0 +1,12 @@
+using output
+val z = 10
+var x : integer
+do 
+    if z == 0 then
+        x = 1
+    else 
+        x = 0
+    end
+    break if x == 0
+    z = z - 1
+end
