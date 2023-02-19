@@ -1,0 +1,4 @@
+using output
+x = # "string" + 1 *2
+y = # ("string" $ 1..2)
+z = ("string" $ 1..2) ? "tr"
