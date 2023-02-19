@@ -1,1 +1,9 @@
+Purpose of test case:
+Ensure that the compiler can seperate if and else if statements, to ensure it can mark the first statement as if and remaining as else if
 
+Output vs expected:
+-Expected output is that program can identify and determine which statement is the if and which are the elseifs
+-Postfix stream displays a single if, encompassing the program, and elseifs/else otherwise
+
+Issues:
+None
