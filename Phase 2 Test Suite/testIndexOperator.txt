@@ -4,7 +4,7 @@ Ensure that the compiler can realize an index operator
 
 Output vs expected:
 -Expected output is for program to return index postfix token
--Index postfix token is returned
+-Index postfix token is returned after the two string indenfier tokens
 
 Issues:
 None
