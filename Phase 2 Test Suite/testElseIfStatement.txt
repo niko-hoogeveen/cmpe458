@@ -1,8 +1,8 @@
 Purpose of test case:
-Ensure that the compiler can seperate if and else if statements, to ensure it can mark the first statement as if and remaining as else if
+Ensure the parser can produce the proper output stream for the newly added elseif syntax.
 
 Output vs expected:
--Expected output is that program can identify and determine which statement is the if and which are the elseifs
+-Expected output is that program can produce the postfix stream with proper encapsulation for the if statement and can identify the elseif syntax that is new to the compiler. 
 -Postfix stream displays a single if, encompassing the program, and elseifs/else otherwise
 
 Issues:
