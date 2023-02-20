@@ -4,7 +4,7 @@ Ensure that the compiler can realize a length operator
 
 Output vs expected:
 -Expected output is for program to return length postfix token
--Length postfix token is returned
+-Length postfix token is returned after the string identifier token
 
 Issues:
 None
