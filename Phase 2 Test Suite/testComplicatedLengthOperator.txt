@@ -2,8 +2,8 @@ Purpose of test case:
 Ensure that the compiler can comprehend complex length operations
 
 Output vs expected:
--Expected output is that program can identify and respond accordingly to length operations in complex formats
--Length operator was understood and recieved even within complex formats given
+-Expected output is that compiler can identify and respond accordingly to length operations in complex formats
+-Length operator was correctly identified and the output tokens are correct and in order.
 
 Issues:
 None
