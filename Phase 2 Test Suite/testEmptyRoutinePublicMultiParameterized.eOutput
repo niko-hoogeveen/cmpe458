@@ -9,10 +9,12 @@
     .sIdentifier
     .sVar
     .sIdentifier
+    .sIdentifier
+    .sVar
+    .sIdentifier
     % .sNewLine
     % .sNewLine
     .sParmEnd
     .sBegin
     .sEnd
-   % .sNewLine
   .sEnd
