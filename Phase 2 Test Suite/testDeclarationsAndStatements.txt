@@ -1,9 +1,9 @@
 Purpose of test case:
-Ensure that the compiler can comprehend a mix of statement and declaration inputs
+Ensure that the compiler can comprehend a mix of statement and declaration inputs and output the proper postfix token stream.
 
 Output vs expected:
--Expected output is that program can identify and categorize declarations and statements without confusion
--Statements and declarations were categorized and dealt with as their respective categories
+-Expected output is that program can identify and produce a proper token stream for a mix of declarations and statements.
+-Statements and declarations were properly parsed and the output token stream was in proper order.
 
 Issues:
 None
