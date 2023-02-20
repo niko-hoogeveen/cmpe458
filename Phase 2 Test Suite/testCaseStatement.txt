@@ -1,9 +1,9 @@
 Purpose of test case:
-Ensure that the compiler can understand case statements and logic of statements made within case structure
+Ensure the parser can identify a case statement, the new when keyword, the else default case, and correctly identify the the declarations inside the cases. 
 
 Output vs expected:
--Expected output is that program can identify a case statement is present and create the corresponding cases
--Cases were produced with corresponding integers for corresponding cases
+-Expected output is that the declaration tokens are encapsulated inside the begin/end tokens for the case logic. Additionally, the output tokens should include the sProgram token along with sIdentifier and sParmEnd to signify the using output source code at the begin of the test.
+-The actual output matches this expectation perfectly. 
 
 Issues:
 None
