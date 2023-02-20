@@ -1,9 +1,9 @@
 Purpose of test case:
-Ensure that the compiler can comprehend complex index operations
+Ensure that the parser can produce the correct output tokens for a nore complicated if statements. 
 
 Output vs expected:
--Expected output is that program can identify and respond accordingly to index operations in complex formats
--Index operator was understood even within complex formats given
+-Expected output is that parser can identify and respond accordingly to index operations in complex formats.
+-Index operator was understood even within complex formats given and all of the tokens were in order and encapsulated properly. 
 
 Issues:
 None
