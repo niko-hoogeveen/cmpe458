@@ -1,6 +1,6 @@
 using output
 
-% substring testing suite 
+% length testing suite 
 var x : string
 var y : integer
 var z : string
