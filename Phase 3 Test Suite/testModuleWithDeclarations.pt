@@ -1,0 +1,6 @@
+using output
+module M
+    var x : integer
+    type t : string
+    val z = 0
+end

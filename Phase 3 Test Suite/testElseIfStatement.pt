@@ -1,0 +1,8 @@
+using output
+if x == y then
+    z = w
+elsif x == 1 then
+    z = 1
+else 
+    z = 0
+end

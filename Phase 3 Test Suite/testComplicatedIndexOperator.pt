@@ -1,0 +1,4 @@
+using output
+if "string" ? "ring" == 2 then
+    x = 1
+end

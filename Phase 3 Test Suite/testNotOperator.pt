@@ -1,0 +1,4 @@
+using output
+if !x == 0 then
+    y = 1
+end
