@@ -944,7 +944,6 @@ TypeDefinitions :       % process named type definitions
                 oSymbolTblEnter
                 oSymbolStkPop
             | *:
-                >
         ];
 
 TypeBody :
