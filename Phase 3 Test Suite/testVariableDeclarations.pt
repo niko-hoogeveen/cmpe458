@@ -1,0 +1,17 @@
+using output
+% Declaration Test Cases
+
+% Variables 
+var x : integer
+var y : string
+var z : boolean
+
+x = 0
+y = "string"
+z = true
+
+% test multiple variable declarations
+var i, j, k : integer
+i = 1
+j = 2
+k = 3
