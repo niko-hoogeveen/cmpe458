@@ -1,1 +1,12 @@
-This test case, contains the different ways a user would be able to use variable type declarations in Quby. The semantic analyzer should be able to accept these declarations, and output the associated addresses and values for all variables declared. 
+Purpose of test case:
+To show the analyzer properly handles variable declarations for each possible Quby type (integer, string, boolean)
+
+Expected Output:
+- output the value and address of the integer variable
+- output the address, length, and value of the string variable
+- output the address and value of the boolean variable
+
+Output:
+- In all three cases, the correct addresses and values are outputted. Note, the memory size of an integer is 4 bytes, string is 1024 bytes and boolean is 4 bytes.
+- The integer is stored at address 4 (one integer stored to initialize program), string is stored at address 8, and the boolean is stored at address 1032 
+- As seen from the .eOutput file, the correct values are outputted for each variable respectively. 
