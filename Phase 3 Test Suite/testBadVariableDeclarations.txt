@@ -1,1 +1,9 @@
+Purpose of test case:
+To show the analyzer properly handles INCORRECT variable declarations for each possible Quby type (integer, string, boolean)
 
+Expected Output:
+-Error messages for mismatched types for each declaration (#eTypeMismatch)
+
+Output:
+- For each declaration, a type mismatch error is outputted. 
+- Note, the x = false declaration does not pose an error because the compiler reads false as the value 0 (integer). 
