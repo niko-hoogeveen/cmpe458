@@ -1,9 +1,0 @@
-Purpose of test case:
-Ensure that the compiler can realize a not equals operator
-
-Output vs expected:
--Expected output is for program to return not equal postfix token
--Not equal postfix token is returned
-
-Issues:
-None

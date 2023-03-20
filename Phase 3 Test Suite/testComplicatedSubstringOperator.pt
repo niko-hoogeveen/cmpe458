@@ -1,5 +1,0 @@
-using output
-x = "string"
-if x $ 1..3 == "tri" then
-    y = 0
-end

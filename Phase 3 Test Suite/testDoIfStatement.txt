@@ -1,9 +1,0 @@
-Purpose of test case:
-Ensure that the parser can parse the Quby routine Do and If properly. 
-
-Output vs expected:
--Expected output is that compuler can parse the new Do If syntax. 
--Do and if components were broken up in the postfix and were dealt with accordingly.
-
-Issues:
-None

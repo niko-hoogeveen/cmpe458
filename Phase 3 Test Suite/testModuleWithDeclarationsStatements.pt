@@ -1,9 +1,0 @@
-using output
-module M
-    var x : integer
-    if z == 1 then
-        x = 1
-    else
-        x = 0
-    end
-end

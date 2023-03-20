@@ -1,9 +1,0 @@
-Purpose of test case:
-Ensure that the parser can produce the correct tokens for multiple declarations in one line.
-
-Output vs expected:
--Expected output is that program can identify the three declarations and output the sVar, sIdentifier tokens for each variable in sequence. Additionally, the tokens for the using output source code should be at the start of the output tokens.
--Declarations were recieved and system created corresponding indexes and values
-
-Issues:
-None
