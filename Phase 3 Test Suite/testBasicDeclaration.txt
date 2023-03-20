@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Purpose of test case:
 Ensure that the compiler can understand value declarations
 
@@ -7,3 +8,6 @@ Output vs expected:
 
 Issues:
 None
+=======
+
+>>>>>>> af37d007a034fc258920de32dbabf89ff4deb436
