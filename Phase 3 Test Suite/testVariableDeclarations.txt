@@ -1,1 +1,1 @@
-This test case, 
+This test case, contains the different ways a user would be able to use variable type declarations in Quby. The semantic analyzer should be able to accept these declarations, and output the associated addresses and values for all variables declared. 
