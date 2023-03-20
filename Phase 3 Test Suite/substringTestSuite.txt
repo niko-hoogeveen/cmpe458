@@ -1,1 +1,11 @@
+Purpose of test case:
+To show the analyzer properly handles usage of the substring operator
 
+Expected Output:
+- the substring operator takes three operands, of type string substring range and outputs type string
+- when using the substring operator, we should see tcode that recognizes the string, tcode of the integer range, and then tSubstring
+- in the two last test cases, the types have been purposely mismatched to ensure the error has been recognized and the proper error message is outputted (#eTypeMismatch).
+
+Output:
+- The output follows exactly as we want it to. The substring operators are recognized, as well as the strings and ranges being used to calculated the substrings. 
+- The erroneous usages of the substring operator are also processed properly, as the #eTypeMismatch error is outputted twice for both cases. 
