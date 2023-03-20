@@ -2,9 +2,17 @@ Purpose of test case:
 To show the analyzer properly handles case statements
 
 Expected Output:
-- string constant declaration should be handled the same way as string variable declaration
-- output the address, length, and value of the string constant
+- the correct order of tcodes to be outputted should be as follows:
+  .tCaseBegin
+  .... (tCode for expression)
+  .tCaseSelect
+  .tCaseMerge
+  .tCaseMerge
+  .tCaseMerge
+  .... (case branch table)
+ .tCaseElse
+ .tCaseMerge
+ 
 
 Output:
-- As seen from .eOutput, the constant string is properly initialized as a string variable would be handled.
-- the proper address, lenght and value is outputted
+- As seen from .eOutput, the proper tCodes are outputted in the correct order
