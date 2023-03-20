@@ -1,1 +1,16 @@
+Purpose of test case:
+To show the analyzer properly handles the three added string operations: stringEquals, stringNotEquals, and concatenation
 
+Expected Output (stringEquals/stringNotEquals):
+- both operators are binary (take two operands).
+- the analyzer should recognize the strings that are being tested for equality/inequality. 
+- tcode for recognition of both strings should be outputted, followed by the .tStringEqual or .tStringEqual .tNot depending what operator is being used. 
+
+Expected Output (concatenation):
+- concatenation is also a binary operator (takes two operands)
+- the analyzer should operate similar to the above operators - recognize the two strings being concatenated and then output .tConcatenate
+
+Output:
+- In all cases, the output follows how we want it to. 
+- For stringEquals and stringNotEquals, literal strings and string variables are working correctly - both strings are recognized and then the proper tcode for the operation being done is outputted.
+- Similarly, for concatenation both strings are being recognized correctly and tConcatenate is outputted. Usage of concatenation works correctly for stringLiterals + stringLiterals, stringVariables + stringVariables, and mixed concantenation of stringLiterals and stringVariables.
