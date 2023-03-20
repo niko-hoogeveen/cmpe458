@@ -10,4 +10,4 @@ Expected Output:
 
 Output:
 - Each module's body is processed as if it were apart of the main body of code. 
-- Additonally the syModule symbol is created and placed on the symbol stack and placed in the symbol table.
+- Additonally the syModule symbol is created and placed on the symbol stack and placed in the symbol table (line 112 and 172 in moduleTestSuite.eOutput)
