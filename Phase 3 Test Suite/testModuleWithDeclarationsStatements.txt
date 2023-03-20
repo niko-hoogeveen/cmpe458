@@ -1,0 +1,10 @@
+
+Purpose of test case:
+Ensure that the compiler can comprehend module declarations with a block statement
+
+Output vs expected:
+-Expected output is for program to return .sModule postfix to recognize module declarations as well as the postfix for the declared block
+-module was returned in the postfix, displaying that the parser understands routine declarations, as well as posfix tokens declared block
+
+Issues:
+None

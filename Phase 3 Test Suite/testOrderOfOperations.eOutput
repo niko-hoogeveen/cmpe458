@@ -1,0 +1,34 @@
+.sProgram
+ % .sNewLine
+ .sIdentifier
+ .sParmEnd
+  .sBegin
+    .sAssignmentStmt
+    .sIdentifier
+          .sStringLiteral
+         .sLength
+         .sInteger
+         % .sNewLine
+         .sInteger
+       .sMultiply
+      .sAdd
+    .sExpnEnd
+    .sAssignmentStmt
+    .sIdentifier
+               .sStringLiteral
+               .sInteger
+               .sInteger
+              .sSubstring
+          % .sNewLine
+         .sLength
+    .sExpnEnd
+    .sAssignmentStmt
+    .sIdentifier
+              .sStringLiteral
+              .sInteger
+              .sInteger
+             .sSubstring
+         .sStringLiteral
+       .sIndex
+    .sExpnEnd
+  .sEnd

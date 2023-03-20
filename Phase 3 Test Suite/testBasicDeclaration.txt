@@ -1,0 +1,9 @@
+Purpose of test case:
+Ensure that the compiler can understand value declarations
+
+Output vs expected:
+-Expected output is that program can output the correct tokens when declaring val, var and type variables.
+-Parser emitted the correct tokens for each declaration
+
+Issues:
+None

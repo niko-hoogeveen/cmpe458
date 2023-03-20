@@ -1,0 +1,58 @@
+.sProgram
+ % .sNewLine
+ .sIdentifier
+ .sParmEnd
+  .sBegin
+   .sConst
+    .sIdentifier
+     % .sNewLine
+     .sInteger
+   .sVar
+    .sIdentifier
+     % .sNewLine
+     .sIdentifier
+   % .sNewLine
+    .sDo
+     .sBegin
+       .sIfStmt
+            .sIdentifier
+            .sInteger
+        .sEq
+       .sExpnEnd
+       % .sNewLine
+       .sThen
+        .sBegin
+          .sAssignmentStmt
+          .sIdentifier
+               % .sNewLine
+               .sInteger
+          .sExpnEnd
+        .sEnd
+       % .sNewLine
+       .sElse
+        .sBegin
+          .sAssignmentStmt
+          .sIdentifier
+               % .sNewLine
+               .sInteger
+          .sExpnEnd
+        .sEnd
+      % .sNewLine
+     .sEnd
+    .sBreakif
+         .sIdentifier
+         % .sNewLine
+         .sInteger
+     .sEq
+    .sExpnEnd
+     .sBegin
+       .sAssignmentStmt
+       .sIdentifier
+            .sIdentifier
+            % .sNewLine
+            .sInteger
+         .sSubtract
+       .sExpnEnd
+     .sEnd
+    % .sNewLine
+  .sEnd
