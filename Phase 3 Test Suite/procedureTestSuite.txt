@@ -1,1 +1,11 @@
+Purpose of test case:
+To show the analyzer properly handles declarations of various types of procedures
 
+Expected Output:
+- each procedure should cause .tSkipProc and .tProcedureEnd to outputted around tCodeOutputs of its body.
+- the proper symbols must be created and handled correctly. For regular procedures, syProcedure symbol will be created. For public, syPublicProcedure symbol will be created. For procedures with parameters, syVarParameter will be created after the creation of the associated procedure symbol. 
+
+Output:
+- The proper tCodes are outputted when instantiating procedures of each type
+- The bodies of the procedures are proccessed correctly (.tSkipProc outputted before the body is processed, and .tProcedureEnd outputted at the end of each procedure)
+- the proper symbols are created in the correct order for each procedure. 
