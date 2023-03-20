@@ -1,0 +1,14 @@
+using output
+
+% substring testing suite 
+var x : string
+var y : integer
+var z : string
+x = "string"
+
+% usage with string literal
+y = #"string" 
+
+% usage with string variable
+y = #x
+
