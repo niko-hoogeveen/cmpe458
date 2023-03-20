@@ -2,18 +2,28 @@ using output
 
 % Module Test Suite
 
+% empty module
 module m
-    val x = "string"
+    
 end
 
+% module with private procedure
 module m
-    var z : integer
-    var y :integer
-    if z == 1 then
-        y = 1
-    elsif z == 2 then
-        y = 0
-    else
-        y = -1
+    def p () 
+
+    end
+end
+
+% module with public procedure
+module m 
+    def * p ()
+    
+    end
+end
+
+% module wiht public procedure that has parameters
+module m 
+    def * p (var x : integer)
+
     end
 end
