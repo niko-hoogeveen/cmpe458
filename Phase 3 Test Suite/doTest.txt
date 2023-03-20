@@ -1,1 +1,15 @@
+Purpose of test case:
+To show the analyzer properly handles do loops
 
+Expected Output:
+- the correct order of tcodes to be outputted should be as follows:
+  .tDoBegin
+  ....
+  .tDoBreakIf
+  .tDoTest
+  .tDoEnd
+ 
+- tCodes corresponding to the body of the do loop should be outputted in place of "...."
+
+Output:
+- As seen from .eOutput, the proper tCodes are outputted in the correct order
