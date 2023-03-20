@@ -1,1 +1,19 @@
+using output
 
+% Module Test Suite
+
+module m
+    val x = "string"
+end
+
+module m
+    var z : integer
+    var y :integer
+    if z == 1 then
+        y = 1
+    elsif z == 2 then
+        y = 0
+    else
+        y = -1
+    end
+end
