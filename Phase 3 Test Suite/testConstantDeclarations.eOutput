@@ -1,0 +1,29 @@
+.tFileDescriptor
+   .tLiteralInteger
+   oEmitValue
+   % value emitted 2
+   .tFileBind
+   .tLiteralAddress
+   oEmitDataAddress
+   % value emitted 0
+   .tStoreInteger
+    .tAssignBegin
+    .tLiteralAddress
+    oEmitValue
+    % value emitted 4
+     .tLiteralString
+     oEmitValue
+     % value emitted 6
+     oEmitString
+     % value emitted 115
+     % value emitted 116
+     % value emitted 114
+     % value emitted 105
+     % value emitted 110
+     % value emitted 103
+     % value emitted 0
+     .tAssignString
+ .tTrapBegin
+ .tTrap
+ oEmitTrapKind(trHalt)
+ % value emitted 0
