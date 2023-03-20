@@ -1,0 +1,76 @@
+.tFileDescriptor
+   .tLiteralInteger
+   oEmitValue
+   % value emitted 2
+   .tFileBind
+   .tLiteralAddress
+   oEmitDataAddress
+   % value emitted 0
+   .tStoreInteger
+   .tAssignBegin
+    .tLiteralAddress
+    oEmitValue
+    % value emitted 4
+      .tLiteralString
+      oEmitValue
+      % value emitted 6
+      oEmitString
+      % value emitted 115
+      % value emitted 116
+      % value emitted 114
+      % value emitted 105
+      % value emitted 110
+      % value emitted 103
+      % value emitted 0
+     oEmitDataAddress
+     % value emitted 1028
+     .tFetchAddress
+    .tAssignString
+    .tAssignBegin
+    .tLiteralAddress
+    oEmitValue
+    % value emitted 1028
+     .tLiteralString
+     oEmitValue
+     % value emitted 7
+     oEmitString
+     % value emitted 115
+     % value emitted 116
+     % value emitted 114
+     % value emitted 105
+     % value emitted 110
+     % value emitted 103
+     % value emitted 50
+     % value emitted 0
+     .tAssignString
+   .tAssignBegin
+    .tLiteralAddress
+    oEmitValue
+    % value emitted 2052
+      .tLiteralAddress
+      oEmitValue
+      % value emitted 4
+      .tFetchString
+      oEmitDataAddress
+      % value emitted 2054
+      .tFetchString
+     .tStringEqual
+    .tAssignBoolean
+   .tAssignBegin
+    .tLiteralAddress
+    oEmitValue
+    % value emitted 2053
+      .tLiteralAddress
+      oEmitValue
+      % value emitted 4
+      .tFetchString
+      oEmitDataAddress
+      % value emitted 2054
+      .tFetchString
+     .tStringEqual
+     .tNot
+    .tAssignBoolean
+ .tTrapBegin
+ .tTrap
+ oEmitTrapKind(trHalt)
+ % value emitted 0
