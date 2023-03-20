@@ -1800,7 +1800,8 @@ program SemanticAnalysis (output, semanticSsl, parseStream, temp, tCode, options
                     oSymbolTblPreserveParameters:
                         { Restore procedure parameter entries to the symbol table }
                         begin
-                            assert (symbolTblKind [symbolTblTop] = syProcedure, assert46);
+                            Assert ((symbolTblKind [symbolTblTop] = syProcedure) or
+                                (symbolTblKind[symbolTblTop] = syPublicProcedure), assert46);
                             symbolTblTop := symbolTblTop +
                                 typeTblLowerBound [symbolTblTypeTblLink[symbolTblTop]];
                         end ;
