@@ -9,6 +9,3 @@ var z : boolean
 x = false
 y = 100
 z = "string"
-
-% declaration of pre-existing variable
-var x : string
