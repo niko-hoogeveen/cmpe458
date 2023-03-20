@@ -6,8 +6,11 @@ Expected Output:
   .tCaseBegin
   .... (tCode for expression)
   .tCaseSelect
+  .... (body of choice)
   .tCaseMerge
+  .... (body of choice)
   .tCaseMerge
+  .... (body of choice)
   .tCaseMerge
   .... (case branch table)
  .tCaseElse
