@@ -1,0 +1,16 @@
+using output
+
+var x : integer
+var y : integer
+x = 4
+
+case x
+    when 1 then
+        y = 1
+    when 2 then
+        y = 2
+    when 3 then 
+        y = 3
+    else
+        y = 4
+end
