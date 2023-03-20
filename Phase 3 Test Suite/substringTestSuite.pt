@@ -1,0 +1,20 @@
+using output
+
+% substring testing suite 
+var x : string
+var y : string
+var z : integer
+x = "string"
+
+% correct usage with string literal
+y = "string" $ 1..2
+
+% correct usage with string variable
+y = x $ 1..2
+
+% incorrect usage - assigning to integer variable
+z = "string" $ 1..2
+
+% incorrect usage - using integer variable 
+y = z $ 1..2
+
