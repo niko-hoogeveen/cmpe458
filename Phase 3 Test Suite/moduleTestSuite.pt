@@ -21,7 +21,7 @@ module m
     end
 end
 
-% module wiht public procedure that has parameters
+% module with public procedure that has parameters
 module m 
     def * p (var x : integer)
 
