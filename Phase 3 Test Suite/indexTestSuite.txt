@@ -1,1 +1,9 @@
+Purpose of test case:
+To show the analyzer properly handles usage of the index operator
 
+Expected Output:
+- the length operator takes one operator, the string we are getting the length of
+- when using the length we should see the proper tcodes for recognizing the string and then .tLength and .tAssignInteger
+
+Output:
+- The output follows exactly as we want it to. The length operators are recognized as well as the strings being used. The proper tCodes are outputted in the correct order.
