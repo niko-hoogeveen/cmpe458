@@ -1,0 +1,28 @@
+using output
+
+% Conditional Test Suite
+
+var x, y : integer
+x = 0
+y = 0
+
+if x == y then
+end
+
+if x != y then 
+else 
+end
+
+if x == y then
+elsif x !=y then
+else
+end
+
+
+if x == y then
+    x = 1
+elsif x > y then
+    x = 2
+else 
+    x = 3
+end
