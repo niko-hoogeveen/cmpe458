@@ -1,5 +1,5 @@
 Purpose of test case:
-To show the analyzer properly handles usage of the length 
+To show the analyzer properly handles usage of the length operator
 
 Expected Output:
 - the length operator takes one operator, the string we are getting the length of
