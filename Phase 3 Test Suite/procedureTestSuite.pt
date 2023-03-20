@@ -1,0 +1,34 @@
+using output
+
+% Procedure Test Suite
+
+% procedure
+def p () 
+
+end
+
+% public procedure
+def * proc ()
+
+end
+
+
+% public procedure that has parameters
+def * pubProc (var x : integer)
+
+end
+
+% procedure with body 
+def procBody () 
+    val s = "string"
+end
+
+% public procedure with body
+def * pubProcBody () 
+    val x = "string"
+end
+
+% public procedure with parameter and body
+def * paramProc (var x : integer) 
+    x = 1
+end
