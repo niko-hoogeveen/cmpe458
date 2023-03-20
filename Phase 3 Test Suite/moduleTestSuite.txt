@@ -1,13 +1,14 @@
 Purpose of test case:
-To show the analyzer properly handles modules 
+To show the analyzer properly handles modules. Specifically testing for functionality of procedures within modules.
 
 Expected Output:
 - no new tcodes necessary for modules
-- should ignore the module intialization and continue to process the body as if it were apart of the bigger program. 
+- should ignore the module intialization and initialize the procedure defined within. 
 - Additonal output file included to show that the module symbol was created and put on the symbol stack when the module is initialized.
-- Two modules present in test suite, and each one's body should follow the same tcodes as if they were in the main program. 
+- Procedure symbols should be outputted after each module symbol, (syProcedure or syPublicProcedure)
 
 
 Output:
-- Each module's body is processed as if it were apart of the main body of code. 
-- Additonally the syModule symbol is created and placed on the symbol stack and placed in the symbol table (line 112 and 172 in moduleTestSuite.eOutput)
+- Each module is properly handled by the analyzer. The procedures defined within are recognized and intitialized correctly
+- Four syModule symbols are created, and three procedure symbols are also created.
+- The case where there is a public procedure with a parameter is handled correctly - module symbol created, syPulicProcedure symbol created and syVarParameter symbol created and placed into symbol table. 
