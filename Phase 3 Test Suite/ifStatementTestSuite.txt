@@ -1,1 +1,13 @@
+Purpose of test case:
+To show the analyzer properly handles if statements in multiple different use cases
 
+Expected Output:
+- Proper sequence of if related tCodes should be emitted in each if statement case. 
+- For both elsif cases, the analyzer should output a sequence of tCodes as if the statements were an else followed by a nested if statement
+- For the case where there are variable assignments, the address and value of the values should be emitted within the proper if tcode statements
+
+
+Output:
+- As seen from .eOutput, the if statements are properly handled in every case. 
+- The elsif statements are handled as an else statement with a nested if statement
+- The variable assignments are recognized and properly handled within the if statements
