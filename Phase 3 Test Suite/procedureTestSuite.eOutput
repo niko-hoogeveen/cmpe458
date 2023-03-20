@@ -1,0 +1,474 @@
+% ssltrace with -e flag
+.tFileDescriptor
+   .tLiteralInteger
+   oEmitValue
+   % value emitted 2
+   .tFileBind
+   .tLiteralAddress
+   oEmitDataAddress
+   % value emitted 0
+   .tStoreInteger
+   .tSkipProc
+   oEmitNullAddress
+   % value emitted -32767
+     .tParmEnd
+   .tProcedureEnd
+   .tSkipProc
+   oEmitNullAddress
+   % value emitted -32767
+     .tParmEnd
+   .tProcedureEnd
+   .tSkipProc
+   oEmitNullAddress
+   % value emitted -32767
+     .tLiteralAddress
+     oEmitValue
+     % value emitted 4
+     .tStoreAddress
+     .tParmEnd
+   .tProcedureEnd
+   .tSkipProc
+   oEmitNullAddress
+   % value emitted -32767
+     .tParmEnd
+      .tAssignBegin
+      .tLiteralAddress
+      oEmitValue
+      % value emitted 8
+       .tLiteralString
+       oEmitValue
+       % value emitted 6
+       oEmitString
+       % value emitted 115
+       % value emitted 116
+       % value emitted 114
+       % value emitted 105
+       % value emitted 110
+       % value emitted 103
+       % value emitted 0
+       .tAssignString
+   .tProcedureEnd
+   .tSkipProc
+   oEmitNullAddress
+   % value emitted -32767
+     .tParmEnd
+      .tAssignBegin
+      .tLiteralAddress
+      oEmitValue
+      % value emitted 1032
+       .tLiteralString
+       oEmitValue
+       % value emitted 6
+       oEmitString
+       % value emitted 115
+       % value emitted 116
+       % value emitted 114
+       % value emitted 105
+       % value emitted 110
+       % value emitted 103
+       % value emitted 0
+       .tAssignString
+   .tProcedureEnd
+   .tSkipProc
+   oEmitNullAddress
+   % value emitted -32767
+     .tLiteralAddress
+     oEmitValue
+     % value emitted 2056
+     .tStoreAddress
+     .tParmEnd
+     .tAssignBegin
+      .tLiteralAddress
+      oEmitValue
+      % value emitted 2056
+      .tFetchAddress
+       .tLiteralInteger
+       oEmitValue
+       % value emitted 1
+      .tAssignInteger
+   .tProcedureEnd
+ .tTrapBegin
+ .tTrap
+ oEmitTrapKind(trHalt)
+ % value emitted 0
+ 
+ % ssltrace with | egrep "^ *[\.o%]" flag
+  oSymbolTblPushScope
+ oCountPush(three)
+  oSymbolStkPushLocalIdentifier
+  oSymbolStkSetKind(syVariable)
+  oTypeStkPush(tpFile)
+  oTypeStkLinkToStandardType(stdText)
+  oSymbolStkEnterTypeReference
+  oValuePush(two)
+   .tFileDescriptor
+   oAllocateAlignOnWord
+   oSymbolStkEnterDataAddress
+   .tLiteralInteger
+   oEmitValue
+   % value emitted 2
+   .tFileBind
+   .tLiteralAddress
+   oEmitDataAddress
+   % value emitted 0
+   .tStoreInteger
+   oAllocateDescriptor
+  oSymbolTblEnter
+  oSymbolStkPop
+  oTypeStkPop
+  oValuePop
+ oCountPop
+   oSymbolStkPushLocalIdentifier
+   .tSkipProc
+   oFixPushForwardBranch
+   oEmitNullAddress
+   % value emitted -32767
+   oSymbolStkSetKind(syProcedure)
+   oValuePushCodeAddress
+   oSymbolStkEnterValue
+   oValuePop
+   oTypeStkPush(tpNull)
+   oTypeStkSetRecursionFlag(yes)
+   oTypeTblEnter
+   oSymbolStkEnterTypeReference
+   oSymbolTblEnter
+   oSymbolTblPushScope
+    oCountPush(zero)
+      oValuePushCount
+      oCountPushValue
+      oValuePop
+     oCountPop
+     .tParmEnd
+     oTypeStkEnterParameterCount
+     oCountPop
+   oTypeStkSetRecursionFlag(no)
+   oTypeTblUpdate
+   oTypeStkPop
+   oSymbolTblUpdate
+   oSymbolStkPop
+   oSymbolTblPopScope
+   oSymbolTblPreserveParameters
+   .tProcedureEnd
+   oFixPopForwardBranch
+   oSymbolStkPushLocalIdentifier
+   .tSkipProc
+   oFixPushForwardBranch
+   oEmitNullAddress
+   % value emitted -32767
+   oSymbolStkSetKind(syPublicProcedure)
+   oValuePushCodeAddress
+   oSymbolStkEnterValue
+   oValuePop
+   oTypeStkPush(tpNull)
+   oTypeStkSetRecursionFlag(yes)
+   oTypeTblEnter
+   oSymbolStkEnterTypeReference
+   oSymbolTblEnter
+   oSymbolTblPushScope
+    oCountPush(zero)
+      oValuePushCount
+      oCountPushValue
+      oValuePop
+     oCountPop
+     .tParmEnd
+     oTypeStkEnterParameterCount
+     oCountPop
+   oTypeStkSetRecursionFlag(no)
+   oTypeTblUpdate
+   oTypeStkPop
+   oSymbolTblUpdate
+   oSymbolStkPop
+   oSymbolTblPopScope
+   oSymbolTblPreserveParameters
+   .tProcedureEnd
+   oFixPopForwardBranch
+   oSymbolStkPushLocalIdentifier
+   .tSkipProc
+   oFixPushForwardBranch
+   oEmitNullAddress
+   % value emitted -32767
+   oSymbolStkSetKind(syPublicProcedure)
+   oValuePushCodeAddress
+   oSymbolStkEnterValue
+   oValuePop
+   oTypeStkPush(tpNull)
+   oTypeStkSetRecursionFlag(yes)
+   oTypeTblEnter
+   oSymbolStkEnterTypeReference
+   oSymbolTblEnter
+   oSymbolTblPushScope
+    oCountPush(zero)
+    oCountIncrement
+    oSymbolStkPushLocalIdentifier
+    oSymbolStkSetKind(syVarParameter)
+     oSymbolStkPushIdentifier
+     oTypeStkPushSymbol
+     oSymbolStkPop
+     oSymbolStkEnterTypeReference
+      oAllocateAlignOnWord
+      oSymbolStkEnterDataAddress
+      oAllocateVarParameter
+     oSymbolTblEnter
+      oValuePushCount
+      oCountPushValue
+      oValuePop
+     .tLiteralAddress
+     oValuePushSymbol
+     oEmitValue
+     % value emitted 4
+     oValuePop
+     .tStoreAddress
+     oSymbolStkPop
+     oTypeStkPop
+     oCountDecrement
+     oCountPop
+     .tParmEnd
+     oTypeStkEnterParameterCount
+     oCountPop
+   oTypeStkSetRecursionFlag(no)
+   oTypeTblUpdate
+   oTypeStkPop
+   oSymbolTblUpdate
+   oSymbolStkPop
+   oSymbolTblPopScope
+   oSymbolTblPreserveParameters
+   .tProcedureEnd
+   oFixPopForwardBranch
+   oSymbolStkPushLocalIdentifier
+   .tSkipProc
+   oFixPushForwardBranch
+   oEmitNullAddress
+   % value emitted -32767
+   oSymbolStkSetKind(syProcedure)
+   oValuePushCodeAddress
+   oSymbolStkEnterValue
+   oValuePop
+   oTypeStkPush(tpNull)
+   oTypeStkSetRecursionFlag(yes)
+   oTypeTblEnter
+   oSymbolStkEnterTypeReference
+   oSymbolTblEnter
+   oSymbolTblPushScope
+    oCountPush(zero)
+      oValuePushCount
+      oCountPushValue
+      oValuePop
+     oCountPop
+     .tParmEnd
+     oTypeStkEnterParameterCount
+     oCountPop
+     oSymbolStkPushLocalIdentifier
+     oSymbolStkSetKind(syConstant)
+      oSymbolStkSetKind(syVariable)
+      oTypeStkPush(tpString)
+      oTypeStkLinkToStandardType(stdString)
+      oValuePushChar
+       oAllocateAlignOnWord
+       oSymbolStkEnterDataAddress
+       oAllocateVariable
+      .tAssignBegin
+      .tLiteralAddress
+      oValuePushSymbol
+      oEmitValue
+      % value emitted 8
+      oValuePop
+      oValuePop
+       oValuePushStringLength
+       .tLiteralString
+       oEmitValue
+       % value emitted 6
+       oValuePop
+       oValuePushCodeAddress
+       oValueNegate
+       oEmitString
+       % value emitted 115
+       % value emitted 116
+       % value emitted 114
+       % value emitted 105
+       % value emitted 110
+       % value emitted 103
+       % value emitted 0
+       oTypeStkPush(tpString)
+       oValuePush(one)
+       oValuePushStringLength
+       oTypeStkEnterBounds
+       oValuePop
+       oValuePop
+       oTypeTblEnter
+       .tAssignString
+      oSymbolStkSetKind(syConstant)
+      oTypeStkPop
+     oSymbolStkEnterTypeReference
+     oTypeStkPop
+     oSymbolStkEnterValue
+     oValuePop
+     oSymbolTblEnter
+     oSymbolStkPop
+   oTypeStkSetRecursionFlag(no)
+   oTypeTblUpdate
+   oTypeStkPop
+   oSymbolTblUpdate
+   oSymbolStkPop
+   oSymbolTblPopScope
+   oSymbolTblPreserveParameters
+   .tProcedureEnd
+   oFixPopForwardBranch
+   oSymbolStkPushLocalIdentifier
+   .tSkipProc
+   oFixPushForwardBranch
+   oEmitNullAddress
+   % value emitted -32767
+   oSymbolStkSetKind(syPublicProcedure)
+   oValuePushCodeAddress
+   oSymbolStkEnterValue
+   oValuePop
+   oTypeStkPush(tpNull)
+   oTypeStkSetRecursionFlag(yes)
+   oTypeTblEnter
+   oSymbolStkEnterTypeReference
+   oSymbolTblEnter
+   oSymbolTblPushScope
+    oCountPush(zero)
+      oValuePushCount
+      oCountPushValue
+      oValuePop
+     oCountPop
+     .tParmEnd
+     oTypeStkEnterParameterCount
+     oCountPop
+     oSymbolStkPushLocalIdentifier
+     oSymbolStkSetKind(syConstant)
+      oSymbolStkSetKind(syVariable)
+      oTypeStkPush(tpString)
+      oTypeStkLinkToStandardType(stdString)
+      oValuePushChar
+       oAllocateAlignOnWord
+       oSymbolStkEnterDataAddress
+       oAllocateVariable
+      .tAssignBegin
+      .tLiteralAddress
+      oValuePushSymbol
+      oEmitValue
+      % value emitted 1032
+      oValuePop
+      oValuePop
+       oValuePushStringLength
+       .tLiteralString
+       oEmitValue
+       % value emitted 6
+       oValuePop
+       oValuePushCodeAddress
+       oValueNegate
+       oEmitString
+       % value emitted 115
+       % value emitted 116
+       % value emitted 114
+       % value emitted 105
+       % value emitted 110
+       % value emitted 103
+       % value emitted 0
+       oTypeStkPush(tpString)
+       oValuePush(one)
+       oValuePushStringLength
+       oTypeStkEnterBounds
+       oValuePop
+       oValuePop
+       oTypeTblEnter
+       .tAssignString
+      oSymbolStkSetKind(syConstant)
+      oTypeStkPop
+     oSymbolStkEnterTypeReference
+     oTypeStkPop
+     oSymbolStkEnterValue
+     oValuePop
+     oSymbolTblEnter
+     oSymbolStkPop
+   oTypeStkSetRecursionFlag(no)
+   oTypeTblUpdate
+   oTypeStkPop
+   oSymbolTblUpdate
+   oSymbolStkPop
+   oSymbolTblPopScope
+   oSymbolTblPreserveParameters
+   .tProcedureEnd
+   oFixPopForwardBranch
+   oSymbolStkPushLocalIdentifier
+   .tSkipProc
+   oFixPushForwardBranch
+   oEmitNullAddress
+   % value emitted -32767
+   oSymbolStkSetKind(syPublicProcedure)
+   oValuePushCodeAddress
+   oSymbolStkEnterValue
+   oValuePop
+   oTypeStkPush(tpNull)
+   oTypeStkSetRecursionFlag(yes)
+   oTypeTblEnter
+   oSymbolStkEnterTypeReference
+   oSymbolTblEnter
+   oSymbolTblPushScope
+    oCountPush(zero)
+    oCountIncrement
+    oSymbolStkPushLocalIdentifier
+    oSymbolStkSetKind(syVarParameter)
+     oSymbolStkPushIdentifier
+     oTypeStkPushSymbol
+     oSymbolStkPop
+     oSymbolStkEnterTypeReference
+      oAllocateAlignOnWord
+      oSymbolStkEnterDataAddress
+      oAllocateVarParameter
+     oSymbolTblEnter
+      oValuePushCount
+      oCountPushValue
+      oValuePop
+     .tLiteralAddress
+     oValuePushSymbol
+     oEmitValue
+     % value emitted 2056
+     oValuePop
+     .tStoreAddress
+     oSymbolStkPop
+     oTypeStkPop
+     oCountDecrement
+     oCountPop
+     .tParmEnd
+     oTypeStkEnterParameterCount
+     oCountPop
+     oSymbolStkPushIdentifier
+     .tAssignBegin
+      .tLiteralAddress
+      oValuePushSymbol
+      oEmitValue
+      % value emitted 2056
+      oValuePop
+      .tFetchAddress
+      oTypeStkPushSymbol
+       oValuePushInteger
+       oSymbolStkPush(syExpression)
+       oTypeStkPush(tpInteger)
+       oTypeStkLinkToStandardType(stdInteger)
+       .tLiteralInteger
+       oEmitValue
+       % value emitted 1
+       oValuePop
+      oTypeStkSwap
+      .tAssignInteger
+     oTypeStkPop
+     oSymbolStkPop
+     oTypeStkPop
+     oSymbolStkPop
+   oTypeStkSetRecursionFlag(no)
+   oTypeTblUpdate
+   oTypeStkPop
+   oSymbolTblUpdate
+   oSymbolStkPop
+   oSymbolTblPopScope
+   oSymbolTblPreserveParameters
+   .tProcedureEnd
+   oFixPopForwardBranch
+ oSymbolTblPopScope
+ .tTrapBegin
+ .tTrap
+ oEmitTrapKind(trHalt)
+ % value emitted 0
