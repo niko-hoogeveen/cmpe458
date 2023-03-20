@@ -1,0 +1,26 @@
+using output
+
+% string operator testing suite 
+var x : string
+var y : string 
+var z : string
+var w : boolean 
+x = "string"
+y = "anotherString"
+
+% string equals/not equals with string literals 
+w = "string" == "anotherString"
+w = "string" != "anotherString"
+
+% string equals/not equals with string variables 
+w = x == y
+w = x !=y 
+
+% string concatenation with string literals 
+z = "another" + "String"
+
+% string concatenation with string variables
+z = x + y 
+
+% mixed concatenation
+z = x + "testString"
