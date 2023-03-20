@@ -49,6 +49,9 @@ Input :
         sThen
         sElse
         sWhileStmt
+        % MODIFICATION MADE - removed unecessary input tokens
+        % sRepeatStmt
+        % sRepeatEnd
         sEq
         sNE
         sLT
@@ -67,7 +70,7 @@ Input :
         sNot
         sNewLine
         sEndOfFile
-        sPublic
+        sPublic % MODIFICATION MADE - added tokens from sPublic to sIndex
         sModule
         sDo
         sBreakif
@@ -105,33 +108,33 @@ Output :
         tVarParm
         tFetchAddress
         tFetchInteger
-        % tFetchChar    DELETED
+        % tFetchChar MODIFICATION MADE - removed
         tFetchBoolean
-        tFetchString
+        tFetchString % MODIFICATION MADE - added
         tAssignBegin
         tAssignAddress
         tAssignInteger
         tAssignBoolean
-        tAssignString
-        % tAssignChar       DELETED
+        tAssignString % MODIFICATION MADE - added
+        % tAssignChar MODIFICATION MADE - removed
         tStoreAddress
         tStoreInteger
         tStoreBoolean
-        tStoreParmString
-        % tStoreChar        DELETED
+        tStoreParmString % MODIFICATION MADE - added
+        % tStoreChar MODIFICATION MADE - removed
         tSubscriptBegin
         tSubscriptAddress
         tSubscriptInteger
         tSubscriptBoolean
-        tSubscriptString
-        % tSubscriptChar    DELETED
+        tSubscriptString % MODIFICATION MADE - added
+        % tSubscriptChar MODIFICATION MADE - removed
         tArrayDescriptor
         tFileDescriptor
         tFileBind
         tIfBegin
         tIfEnd
         tCaseBegin
-        tDoBegin        %Changed from tWhileBegin
+        tDoBegin % MODIFICATION MADE - Changed from tWhileBegin
         tRepeatBegin
         tRepeatControl
         tCallBegin
@@ -142,30 +145,30 @@ Output :
         tTrapBegin
         tWriteEnd
         tReadEnd
-        tConcatenate    % new
-        tIndex          % new
-        tLength         % new
+        tConcatenate % MODIFICATION MADE - added output tokens from tConcatenate to tDoBreakIf
+        tIndex          
+        tLength         
         tSubstring
-        tStringEqual    % new
-        tDoBreakIf      % new
+        tStringEqual
+        tDoBreakIf
 
         % Compound T-codes - T-code operations that take an operand
         tLiteralAddress
         firstCompoundTcode = tLiteralAddress
         tLiteralInteger
-        %% tLiteralChar DELETED
+        % tLiteralChar MODIFICATION MADE - removed
         tLiteralBoolean
         tSkipString
         tStringData
-        tLiteralString  % new
+        tLiteralString  % MODIFICATION MADE - added
         tIfThen
         tIfMerge
         tCaseSelect
-        tCaseElse   % changed from tCaseMerge
+        tCaseElse   % MODIFICATION MADE - changed from tCaseMerge
         tCaseMerge 
         tCaseEnd
-        tDoTest     % changed from tWhileTest
-        tDoEnd      % changed from tWhileEnd
+        tDoTest     % MODIFICATION MADE - changed from tWhileTest
+        tDoEnd      % MODIFICATION MADE - changed from tWhileEnd
         tRepeatTest
         tSkipProc
         tCallEnd
@@ -228,7 +231,7 @@ type Integer :
         % These two sizes are machine dependent
         byteSize = 1
         wordSize = 4
-        stringSize = 1024;  % new
+        stringSize = 1024;  % MODIFICATION MADE - added to specify string size in memory
 
 type Boolean :
         no
@@ -244,7 +247,7 @@ type PredeclaredId :
         % Predeclared type names
         firstPredeclaredType = firstPredeclaredId
         pidInteger = firstPredeclaredType
-        pidString
+        pidString % MODIFICATION MADE - changed from pidChar
         pidBoolean
         pidText
         lastPredeclaredType = pidText
@@ -273,7 +276,7 @@ type PredeclaredId :
 
 type StdType :
         stdInteger
-        stdString   % changed from stdChar
+        stdString   % MODIFICATION MADE - changed from stdChar
         stdBoolean
         stdText;
 
@@ -297,9 +300,9 @@ mechanism SymbolTable :
         % Push a lexic level stack entry and set it to refer
         % to the top entry in the symbol table.
 
-    oSymbolTblMergeScope        % new
+    oSymbolTblMergeScope        % MODIFICATION MADE - added to merge current scope with the previous one
         
-    oSymbolTblStripScope        % new
+    oSymbolTblStripScope        % MODIFICATION MADE - added to strip non-public symbols from the scop
 
     oSymbolTblPopScope
         % Pop the lexic level stack and unlink all names local to the scope.
@@ -326,8 +329,8 @@ type SymbolKind :
         syFunction
         syExternal
         syExpression
-        syModule            % new
-        syPublicProcedure   % new
+        syModule            % MODIFICATION MADE - added
+        syPublicProcedure   % MODIFICATION MADE - added
         syUndefined;
 
 type StdRoutine :
@@ -441,7 +444,7 @@ mechanism TypeTable :
 
 type TypeKind :
         tpInteger
-        tpString    % changed from tpChar
+        tpString    % MODIFICATION MADE - changed from tpChar
         tpBoolean
         tpSubrange
         tpArray
@@ -538,11 +541,10 @@ type TrapKind :
         trReadln = 4
         trWrite = 5
         trWriteln = 6
-        trWriteString = 109       
+        trWriteString = 109     % MODIFICATION MADE - changed from trWriteChar      
         trWriteInteger = 8
-        trWriteChar = 9
         trReadInteger = 10
-        trReadString = 108   % changed from trReadChar
+        trReadString = 108      % MODIFICATION MADE - changed from trReadChar
         trAssign = 12;
 
 mechanism Emit :
@@ -725,7 +727,7 @@ Program :
         sProgram
         % Program scope, distinct from implicit scope surrounding
         % program which contains predefined names
-        %oSymbolStkPush(syProcedure)
+        % oSymbolStkPush(syProcedure)    % MODIFICATION MADE - removed
         oSymbolTblPushScope
         % Count is used to assign file descriptors to non-standard
         % files.  We assume that "input" has file descriptor 1,
@@ -811,33 +813,33 @@ Block:
                 @TypeDefinitions
             | sVar:
                 @VariableDeclarations
-            | sAssignmentStmt:
+            | sAssignmentStmt:          % MODIFICATION MADE - added
                 @AssignmentStmt
-            | sCallStmt:
+            | sCallStmt:                % MODIFICATION MADE - added
                 @CallStmt
-            | sIfStmt:
+            | sIfStmt:                  % MODIFICATION MADE - added
                 @IfStmt
-            | sWhileStmt:
+            | sWhileStmt:               % MODIFICATION MADE - added
                 @WhileStmt
-            | sCaseStmt:
+            | sCaseStmt:                % MODIFICATION MADE - added
                 @CaseStmt
-            | sDo:
+            | sDo:                      % MODIFICATION MADE - added
                 @DoStmt
-            | sModule:
+            | sModule:                  % MODIFICATION MADE - added
                 @ModuleDefinition
-            | sNullStmt:
+            | sNullStmt:                % MODIFICATION MADE - added
             | *:
                 >
         ]}
         sEnd;
 
-Statement :
+Statement :     % MODIFICATION MADE - changed to simply call @Block in a new scope (old @Statement is now included in @Block)
         oSymbolTblPushScope 
         @Block
         oSymbolTblPopScope;
 
 ConstantDefinitions :           % Process named constant definitions
-        [
+        [                       % MODIFICATION MADE - removed outer loop
             | sIdentifier:
                 oSymbolStkPushLocalIdentifier
                 [ oSymbolStkChooseKind
@@ -900,7 +902,7 @@ ConstantValue :         % push the value and type of the constant value
                     | *:
                 ]
                 oSymbolStkPop   
-            | sStringLiteral:
+            | sStringLiteral:           % MODIFICATION MADE - this choice now treats string constants like variables, used to simply call @StringLiteral
                 oSymbolStkSetKind(syVariable)
                 oTypeStkPush(tpString)
                 oTypeStkLinkToStandardType(stdString)
@@ -921,7 +923,7 @@ ConstantValue :         % push the value and type of the constant value
         ];
 
 TypeDefinitions :       % process named type definitions
-        [
+        [       % MODIFICATION MADE - removed outer loop
             | sIdentifier:
                 oSymbolStkPushLocalIdentifier
                 [ oSymbolStkChooseKind
@@ -1127,20 +1129,20 @@ SubrangeUpperBound :
             | *:
         ];
 
-VariableDeclarations :
-        oCountPush(one)
-        sIdentifier
-        oSymbolStkPushLocalIdentifier
-        %[ oSymbolStkChooseKind
-        %    | syUndefined, syExternal:
-        %    | *:
-        %        #eMultiplyDefined
-        %]
+VariableDeclarations :          % MODIFICATION MADE - modified rule to allow for multiple identifiers
+        oCountPush(one)                 % MODIFICATION MADE - added
+        sIdentifier                     %
+        oSymbolStkPushLocalIdentifier   %
+        %[ oSymbolStkChooseKind                 % MODIFICATION MADE - removed
+        %    | syUndefined, syExternal:         %
+        %    | *:                               %
+        %        #eMultiplyDefined              %
+        %]                                      %
         {[
-            | sVar: 
-                sIdentifier
-                oCountIncrement
-                oSymbolStkPushLocalIdentifier
+            | sVar:                                     % MODIFICATION MADE - added
+                sIdentifier                             %
+                oCountIncrement                         %
+                oSymbolStkPushLocalIdentifier           %
                 [ oSymbolStkChooseKind
                     | syUndefined, syExternal:
                     | *:
@@ -1150,27 +1152,25 @@ VariableDeclarations :
                 
                 % Accepts a type specification and pushes its type to the Type Stack.
                 % Creates type table entries for the type and any new subtypes as necessary.
-                %@TypeBody
-                %@EnterVariableAttributes
-                %oTypeStkPop
-                %oSymbolStkPop
+                %@TypeBody                              % MODIFICATION MADE - removed
+                %@EnterVariableAttributes               %
+                %oTypeStkPop                            %
+                %oSymbolStkPop                          %
             | *:
                 >
         ]}
         
-        @TypeBody
-        {[ oCountChoose
-            | zero:
-                >
-            | *:
-                oCountDecrement
-                @EnterVariableAttributes
-                oSymbolStkPop
-                %oTypeStkSwap
-                
+        @TypeBody                               % MODIFICATION MADE - added
+        {[ oCountChoose                         %
+            | zero:                             %
+                >                               %
+            | *:                                %
+                oCountDecrement                 %
+                @EnterVariableAttributes        %
+                oSymbolStkPop                   %                
         ]}
-        oTypeStkPop
-        oCountPop;
+        oTypeStkPop             % MODIFICATION MADE - removed
+        oCountPop;              %
 
 EnterVariableAttributes :
         % Enter the type on top of the Type Stack as the type of 
@@ -1205,8 +1205,7 @@ EnterVariableAttributes :
                         @AllocateVar
                 ]
                 oSymbolStkEnterTypeReference
-                oSymbolTblEnter
-                
+                oSymbolTblEnter        
         ];
  
 AllocateVar :
@@ -1228,10 +1227,10 @@ AllocateVar :
                     | tpBoolean:
                         oSymbolStkEnterDataAddress
                         oAllocateVariable
-                    | tpString:
-                        oAllocateAlignOnWord
-                        oSymbolStkEnterDataAddress
-                        oAllocateVariable
+                    | tpString:                         % MODIFICATION MADE - added for string allocation
+                        oAllocateAlignOnWord            %
+                        oSymbolStkEnterDataAddress      %
+                        oAllocateVariable               %
                     | tpArray:
                         % emit code to initialize run-time array descriptor
                         .tArrayDescriptor
@@ -1271,7 +1270,7 @@ AllocateVar :
                 ]
         ];
 
-ModuleDefinition:
+ModuleDefinition:               % MODIFICATION MADE - added to handle modules (very similar to @ProcedureDefinition
     sIdentifier  oSymbolStkPushLocalIdentifier      % module name
         [ oSymbolStkChooseKind
             | syUndefined:
@@ -1304,9 +1303,9 @@ ModuleDefinition:
         oSymbolTblMergeScope;
 
 
-ProcedureDefinition :
+ProcedureDefinition :           % MODIFICATION MADE - changed so that public procedures are supported
         [
-            | sPublic: 
+            | sPublic:                  % MODIFICATION MADE - added to handle public procedure input token
                 sIdentifier  oSymbolStkPushLocalIdentifier      % procedure name
                 [ oSymbolStkChooseKind
                     | syUndefined:
@@ -1323,9 +1322,9 @@ ProcedureDefinition :
                 oFixPushForwardBranch
                 oEmitNullAddress
 
-                oSymbolStkSetKind(syPublicProcedure)
+                oSymbolStkSetKind(syPublicProcedure)    % MODIFICATION MADE - this case sets symbolkind to syPublicProcedure
 
-            | *:
+            | *:                        % MODIFICATION MADE - default case for regular procedures
                 sIdentifier  oSymbolStkPushLocalIdentifier      % procedure name
                 [ oSymbolStkChooseKind
                     | syUndefined:
@@ -1342,7 +1341,7 @@ ProcedureDefinition :
                 oFixPushForwardBranch
                 oEmitNullAddress
 
-                oSymbolStkSetKind(syProcedure)
+                oSymbolStkSetKind(syProcedure)          % MODIFICATION MADE - sets symbolkind to syProcedure
         ]
 
         oValuePushCodeAddress
@@ -1495,7 +1494,7 @@ EmitAssign:
         [ oTypeStkChooseKind
             | tpInteger, tpSubrange, tpFile:
                 .tAssignInteger
-            | tpString:
+            | tpString:         % MODIFICATION MADE - changed from tpChar
                 .tAssignString
             | tpBoolean:
                 .tAssignBoolean
@@ -1506,7 +1505,7 @@ EmitStore:
         [ oTypeStkChooseKind
             | tpInteger, tpSubrange, tpFile:
                 .tStoreInteger
-            | tpString:
+            | tpString:         % MODIFICATION MADE - changed from tpChar
                 .tStoreParmString
             | tpBoolean:
                 .tStoreBoolean
@@ -1686,7 +1685,7 @@ WhileStmt :
         oFixPopTargetAddress
         oFixPopForwardBranch;
 
-DoStmt:
+DoStmt:                 % MODIFICATION MADE - added to handle do statements, almost identical to old WhileStmt
     .tDoBegin
     oFixPushTargetAddress           % top-of-loop branch target
     @Statement
@@ -1702,7 +1701,7 @@ DoStmt:
     oFixPopForwardBranch;
 
 
-%RepeatStmt :
+%RepeatStmt :           % MODIFICATION MADE - removed
 %        .tRepeatBegin
 %        oFixPushTargetAddress           % top-of-loop branch target
 %        {[
@@ -1716,7 +1715,7 @@ DoStmt:
 %        .tRepeatTest
 %        oFixPopTargetAddress;
 
-CaseStmt :
+CaseStmt :              % MODIFICATION MADE - modified to handle else statements and sElse token
         .tCaseBegin
         @CaseSelectorExpression
         oCasePushDisplay        % handle nested case statements
@@ -1725,18 +1724,18 @@ CaseStmt :
         oFixPushForwardBranch
         oEmitNullAddress        % address of case branch table
         {[
-            | sElse:
-                .tCaseEnd
-                oFixPopForwardBranch
-                oEmitCaseBranchTable
-                @CaseElse
-                sCaseEnd
-                >
-            | sCaseEnd:
-                .tCaseEnd
-                oFixPopForwardBranch
-                oEmitCaseBranchTable
-                >
+            | sElse:                    % MODIFICATION MADE - added
+                .tCaseEnd               %
+                oFixPopForwardBranch    %
+                oEmitCaseBranchTable    %
+                @CaseElse               %
+                sCaseEnd                %
+                >                       %
+            | sCaseEnd:                 % MODIFICATION MADE - changed to be inside choice instead of at the end
+                .tCaseEnd               %
+                oFixPopForwardBranch    %
+                oEmitCaseBranchTable    %
+                >                       %
             | *:
                 @CaseAlternative
         ]}
@@ -1822,7 +1821,7 @@ CaseElse:
 
 
 
-Expression :
+Expression :    % MODIFICATION MADE - modified to support ternary operators
         % Expressions have been converted to postfix form by the
         % previous pass with the exceptions noted below. This rule
         % pushes symbol and type table entries for the expression result.
@@ -1831,7 +1830,7 @@ Expression :
             @Operand
             @UnaryOperator
             @BinaryOperator
-            @TernaryOperator
+            @TernaryOperator    % MODIFICATION MADE - added
             [
                 | sExpnEnd:
                     >
@@ -1891,7 +1890,7 @@ Operand :
             | *:
         ];
 
-StringLiteral :
+StringLiteral :         % MODIFICATION MADE - modified to be much more straightforward instead of choice statement
         % Process a string literal, which can either represent 
         % a single character or a packed array of characters.
         % Pushes the type and value. 
@@ -1902,21 +1901,21 @@ StringLiteral :
         % branch around the literal string since
         % it is stored in the code area
 
-        .tLiteralString
-        oEmitValue                      % string length
-        oValuePop
-        oValuePushCodeAddress           % The string's characters are in the code area
-        oValueNegate                    % encode that with a negative address
-        oEmitString                     % string's characters
-        oTypeStkPush(tpString)
-        oValuePush(one)                 % strings are indexed from 1
-        oValuePushStringLength
-        oTypeStkEnterBounds
-        oValuePop
-        oValuePop
-        oTypeTblEnter;
+        .tLiteralString                                                                 % MODIFICATION MADE - changed
+        oEmitValue                      % string length                                 %
+        oValuePop                                                                       %
+        oValuePushCodeAddress           % The string's characters are in the code area  %
+        oValueNegate                    % encode that with a negative address           %
+        oEmitString                     % string's characters                           %
+        oTypeStkPush(tpString)                                                          %
+        oValuePush(one)                 % strings are indexed from 1                    %
+        oValuePushStringLength                                                          %
+        oTypeStkEnterBounds                                                             %
+        oValuePop                                                                       %
+        oValuePop                                                                       %
+        oTypeTblEnter;                                                                  %
 
-UnaryOperator :
+UnaryOperator :         % MODIFICATION MADE - added support for sLength input token
         [
             | sNegate:
                 .tNegate
@@ -1928,27 +1927,27 @@ UnaryOperator :
                 oTypeStkPush(tpBoolean) % result type
                 @CompareAndSwapTypes
                 oTypeStkPop
-            | sLength:
-                .tLength
-                oTypeStkPush(tpInteger) % result type
-                @CompareAndSwapTypes
-                oTypeStkPop
+            | sLength:                                  % MODIFICATION MADE - added
+                .tLength                                %
+                oTypeStkPush(tpInteger) % result type   %
+                @CompareAndSwapTypes                    %
+                oTypeStkPop                             %
             | *:
                 >>
         ]
         % If an operator is present the result is an expression
         oSymbolStkSetKind(syExpression);
 
-BinaryOperator :
+BinaryOperator :        % MODIFICATION MADE - changed to handled basic string operations
         % Choice should be ordered by frequency of occurrence of alternatives.
         % Could make this a cycle (comment applies to UnaryOperator as well)
         % but that would probably be less efficient on average.
         [
             | sAdd:
-                [ oTypeStkChooseKind
-                    | tpString:
-                        .tConcatenate
-                        oTypeStkPush(tpString)
+                [ oTypeStkChooseKind                    % MODIFICATION MADE - added
+                    | tpString:                         %
+                        .tConcatenate                   %
+                        oTypeStkPush(tpString)          %
                     | *:
                         .tAdd
                         oTypeStkPush(tpInteger) % result type
@@ -1971,18 +1970,18 @@ BinaryOperator :
                 oTypeStkPush(tpBoolean)
                 @CompareOperandAndResultTypes
             | sEq:
-                [ oTypeStkChooseKind
-                    | tpString:
-                        .tStringEqual
+                [ oTypeStkChooseKind            % MODIFICATION MADE - added
+                    | tpString:                 %
+                        .tStringEqual           %
                     | *:
                         .tEQ
                 ]
                 @CompareEqualityOperandTypes
             | sNE:
-                [ oTypeStkChooseKind
-                    | tpString:
-                        .tStringEqual
-                        .tNot
+                [ oTypeStkChooseKind            % MODIFICATION MADE - added
+                    | tpString:                 %
+                        .tStringEqual           %
+                        .tNot                   %
                     | *:
                         .tNE
                 ]
@@ -2011,17 +2010,17 @@ BinaryOperator :
                 .tModulus
                 oTypeStkPush(tpInteger)
                 @CompareOperandAndResultTypes
-            | sIndex:
-                .tIndex
-                oTypeStkPush(tpInteger)
-                @CompareOperandAndResultTypes
+            | sIndex:                           % MODIFICATION MADE - added
+                .tIndex                         %
+                oTypeStkPush(tpInteger)         %
+                @CompareOperandAndResultTypes   %
             | *:
                 >>
         ]
         % If an operator is present the result is an expression
         oSymbolStkSetKind(syExpression);
 
-TernaryOperator :
+TernaryOperator :               % MODIFICATION MADE - added to handed substrings
     [                   
         | sSubstring:
             % Last operand is end index
@@ -2069,7 +2068,7 @@ CompareAndSwapTypes :
                     | *:
                         #eTypeMismatch
                 ]
-            %| tpString:
+            %| tpChar:                        % MODIFICATION MADE - removed
             %    oTypeStkSwap
             %    [ oTypeStkChooseKind
             %        | tpString:
@@ -2164,7 +2163,7 @@ CompareEqualityOperandTypes :
                     | *:
                         #eOperandOperatorTypeMismatch
                 ]
-            | tpString: 
+            | tpString:         % MODIFICATION MADE - changed from tpChar
                 oTypeStkPop
                 [ oTypeStkChooseKind
                     | tpString:
@@ -2246,7 +2245,7 @@ VariableExtension :
                 [ oTypeStkChooseKind
                     | tpInteger, tpSubrange:
                         .tSubscriptInteger
-                    | tpString:
+                    | tpString:         % MODIFICATION MADE - changed from tpChar
                         .tSubscriptString
                     | tpBoolean:
                         .tSubscriptBoolean
@@ -2263,13 +2262,13 @@ ConstantOperand :
             | tpInteger, tpSubrange:
                 .tLiteralInteger
                 oEmitValue
-            | tpString:
+            | tpString:         % MODIFICATION MADE - changed from tpChar
                 oEmitDataAddress
                 .tFetchString
             | tpBoolean:
                 .tLiteralBoolean
                 oEmitValue
-            %| tpStringLiteral:         % a named literal string
+            %| tpString:         % a named literal string         % MODIFICATION MADE - removed
             %    .tLiteralString
             %    oEmitValue
         ]
@@ -2283,7 +2282,7 @@ VariableOperand :
         [ oTypeStkChooseKind
             | tpInteger, tpSubrange, tpFile:
                 .tFetchInteger          % replace address with value
-            | tpString:
+            | tpString:         % MODIFICATION MADE - changed from tpChar
                 .tFetchString
             | tpBoolean:
                 .tFetchBoolean
@@ -2698,7 +2697,7 @@ WriteText :
         ]
         .tParmEnd
         [ oTypeStkChooseKind
-            %| tpChar:
+            %| tpChar:                  % MODIFICATION MADE - removed
             %    .tTrap
             %    oEmitTrapKind(trWriteChar)
             | tpInteger, tpSubrange:
@@ -2983,7 +2982,7 @@ ReadBinaryParameterList :
 
 ReadText :
         [ oTypeStkChooseKind
-            | tpString:
+            | tpString:         % MODIFICATION MADE - changed from tpChar
                 .tTrap
                 oEmitTrapKind(trReadString)
             | tpInteger, tpSubrange:
@@ -3100,7 +3099,7 @@ TextFileVariable :
                     | syVariable, syVarParameter:
                         oTypeStkPushComponent
                         [ oTypeStkChooseKind
-                            | tpString:
+                            | tpString:         % MODIFICATION MADE - changed from tpChar
                                 [
                                     | sExpnEnd:
                                     | *:
