@@ -1,0 +1,16 @@
+using output
+
+% String Test Suite
+
+var x : string
+x = "string"
+
+val y = "string2"
+
+type z : string
+
+
+var i : boolean
+var j : boolean 
+i = x == y
+j = x != y
