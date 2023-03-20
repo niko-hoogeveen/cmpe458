@@ -1,0 +1,118 @@
+.tFileDescriptor
+   .tLiteralInteger
+   oEmitValue
+   % value emitted 2
+   .tFileBind
+   .tLiteralAddress
+   oEmitDataAddress
+   % value emitted 0
+   .tStoreInteger
+   .tAssignBegin
+    .tLiteralAddress
+    oEmitValue
+    % value emitted 4
+      .tLiteralString
+      oEmitValue
+      % value emitted 6
+      oEmitString
+      % value emitted 115
+      % value emitted 116
+      % value emitted 114
+      % value emitted 105
+      % value emitted 110
+      % value emitted 103
+      % value emitted 0
+     oEmitDataAddress
+     % value emitted 2056
+     .tFetchAddress
+    .tAssignString
+   .tAssignBegin
+    .tLiteralAddress
+    oEmitValue
+    % value emitted 1028
+      .tLiteralString
+      oEmitValue
+      % value emitted 6
+      oEmitString
+      % value emitted 115
+      % value emitted 116
+      % value emitted 114
+      % value emitted 105
+      % value emitted 110
+      % value emitted 103
+      % value emitted 0
+     oEmitDataAddress
+     % value emitted 2056
+     .tFetchAddress
+     .tLiteralInteger
+     oEmitValue
+     % value emitted 1
+     .tLiteralInteger
+     oEmitValue
+     % value emitted 2
+     .tSubstring
+    .tAssignString
+   .tAssignBegin
+    .tLiteralAddress
+    oEmitValue
+    % value emitted 1028
+      .tLiteralAddress
+      oEmitValue
+      % value emitted 4
+      .tFetchString
+     .tLiteralInteger
+     oEmitValue
+     % value emitted 1
+     .tLiteralInteger
+     oEmitValue
+     % value emitted 2
+     .tSubstring
+    .tAssignString
+   .tAssignBegin
+    .tLiteralAddress
+    oEmitValue
+    % value emitted 2052
+      .tLiteralString
+      oEmitValue
+      % value emitted 6
+      oEmitString
+      % value emitted 115
+      % value emitted 116
+      % value emitted 114
+      % value emitted 105
+      % value emitted 110
+      % value emitted 103
+      % value emitted 0
+     oEmitDataAddress
+     % value emitted 2056
+     .tFetchAddress
+     .tLiteralInteger
+     oEmitValue
+     % value emitted 1
+     .tLiteralInteger
+     oEmitValue
+     % value emitted 2
+     .tSubstring
+    #eTypeMismatch
+    .tAssignInteger
+   .tAssignBegin
+    .tLiteralAddress
+    oEmitValue
+    % value emitted 1028
+      .tLiteralAddress
+      oEmitValue
+      % value emitted 2052
+      .tFetchInteger
+     .tLiteralInteger
+     oEmitValue
+     % value emitted 1
+     .tLiteralInteger
+     oEmitValue
+     % value emitted 2
+     #eTypeMismatch
+     .tSubstring
+    .tAssignString
+ .tTrapBegin
+ .tTrap
+ oEmitTrapKind(trHalt)
+ % value emitted 0
