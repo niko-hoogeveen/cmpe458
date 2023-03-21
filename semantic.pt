@@ -794,7 +794,7 @@ program SemanticAnalysis (output, semanticSsl, parseStream, temp, tCode, options
 
         { Predefined type table entries }
         standardIntegerTypeRef: TypeTblReference;
-        standardStringTypeRef:  TypeTblReference;
+        standardStringTypeRef:  TypeTblReference; { MODIFICATION MADE - changed from standardCharTypeReference }
         standardBooleanTypeRef: TypeTblReference;
         standardTextTypeRef:    TypeTblReference;
         
@@ -1023,7 +1023,7 @@ program SemanticAnalysis (output, semanticSsl, parseStream, temp, tCode, options
               similarly for char, Boolean and text. }
             standardIntegerTypeRef := pidInteger;
 
-            { char }
+            { string MODIFICATION MADE - changed from char }
             symbolTblKind[pidString] := syType;
             symbolTblTypeTblLink[pidString] := pidString;
             typeTblKind[pidString] := tpString;
@@ -1039,7 +1039,7 @@ program SemanticAnalysis (output, semanticSsl, parseStream, temp, tCode, options
             symbolTblKind[pidText] := syType;
             symbolTblTypeTblLink[pidText] := pidText;
             typeTblKind[pidText] := tpFile;
-            typeTblComponentLink[pidText] := standardStringTypeRef;
+            typeTblComponentLink[pidText] := standardStringTypeRef; { MODIFICATION MADE - changed from standardCharTypeRef }
             standardTextTypeRef := pidText;
 
             { true (1) }
@@ -1801,7 +1801,7 @@ program SemanticAnalysis (output, semanticSsl, parseStream, temp, tCode, options
                         { Restore procedure parameter entries to the symbol table }
                         begin
                             Assert ((symbolTblKind [symbolTblTop] = syProcedure) or
-                                (symbolTblKind[symbolTblTop] = syPublicProcedure), assert46);
+                                (symbolTblKind[symbolTblTop] = syPublicProcedure), assert46); { MODIFICATION MADE - added support for syPublicProcedute }
                             symbolTblTop := symbolTblTop +
                                 typeTblLowerBound [symbolTblTypeTblLink[symbolTblTop]];
                         end ;
@@ -1826,7 +1826,7 @@ program SemanticAnalysis (output, semanticSsl, parseStream, temp, tCode, options
                                 end
                         end;
                         
-                    oSymbolTblStripScope:
+                    oSymbolTblStripScope: { MODIFICATION MADE - added }
                         begin
                             Assert((lexicLevelStackTop >= 1), assert31);
                             i := symbolTblTop;
@@ -1849,7 +1849,7 @@ program SemanticAnalysis (output, semanticSsl, parseStream, temp, tCode, options
                                 end
                         end;
                     
-                    oSymbolTblMergeScope:
+                    oSymbolTblMergeScope: { MODIFICATION MADE - added }
                     begin
                         Assert((lexicLevelStackTop >=1), assert31);
                         lexicLevelStackTop := lexicLevelStackTop - 1;
@@ -1942,7 +1942,7 @@ program SemanticAnalysis (output, semanticSsl, parseStream, temp, tCode, options
                           formal parameter, where i is the value of the top count stack entry. }
                         begin
                             Assert((symbolStkKind[symbolStkTop] = syProcedure) or   
-                                    (symbolStkKind[symbolStkTop] = syPublicProcedure), assert24);
+                                    (symbolStkKind[symbolStkTop] = syPublicProcedure), assert24); { MODIFICATION MADE - added support for syPublicProcedute }
                             SymbolStkPushIdentifier(symbolStkSymbolTblRef [symbolStkTop] + 
                                 countStack[countStackTop]);
                         end;
@@ -1991,7 +1991,7 @@ program SemanticAnalysis (output, semanticSsl, parseStream, temp, tCode, options
                         begin
                             Assert((symbolStkKind[symbolStkTop] = syProcedure) or
                                    (symbolStkKind[symbolStkTop] = syFunction) or
-                                    (symbolStkKind[symbolStkTop] = syPublicProcedure), assert27);
+                                    (symbolStkKind[symbolStkTop] = syPublicProcedure), assert27); { MODIFICATION MADE - added support for syPublicProcedute }
                             if symbolStkValue[symbolStkTop] < 0 then
                                 resultValue := -symbolStkValue[symbolStkTop]
                             else
@@ -2080,7 +2080,7 @@ program SemanticAnalysis (output, semanticSsl, parseStream, temp, tCode, options
                             case parameterValue of
                                 stdInteger:
                                     typeStkTypeTblRef[typeStkTop] := standardIntegerTypeRef;
-                                stdString:
+                                stdString: { MODIFICATION MADE - changed from char }
                                     typeStkTypeTblRef[typeStkTop] := standardStringTypeRef;
                                 stdBoolean:
                                     typeStkTypeTblRef[typeStkTop] := standardBooleanTypeRef;
@@ -2110,7 +2110,7 @@ program SemanticAnalysis (output, semanticSsl, parseStream, temp, tCode, options
                         { Set the top entry's parameter count field from the top count. }
                         begin
                             Assert((symbolStkKind[symbolStkTop] = syProcedure) or
-                                    (symbolStkKind[symbolStkTop] = syPublicProcedure), assert28);
+                                    (symbolStkKind[symbolStkTop] = syPublicProcedure), assert28); { MODIFICATION MADE - added support for syPublicProcedute }
                             typeStkLowerBound[typeStkTop] := countStack[countStackTop];
                         end;
 
@@ -2119,7 +2119,7 @@ program SemanticAnalysis (output, semanticSsl, parseStream, temp, tCode, options
                           otherwise return no. }
                         begin
                             Assert((symbolStkKind[symbolStkTop] = syProcedure) or
-                                    (symbolStkKind[symbolStkTop] = syPublicProcedure), assert29);
+                                    (symbolStkKind[symbolStkTop] = syPublicProcedure), assert29); { MODIFICATION MADE - added support for syPublicProcedute }
                             if typeStkLowerBound[typeStkTop] = countStack[countStackTop] then
                                 resultValue := yes
                             else
@@ -2396,7 +2396,7 @@ program SemanticAnalysis (output, semanticSsl, parseStream, temp, tCode, options
                                 dataAreaEnd := dataAreaEnd + wordSize;
                             tpBoolean:
                                 dataAreaEnd := dataAreaEnd + byteSize;
-                            tpString:
+                            tpString: { MODIFICATION MADE - changed from tpChar and used stringSize for allocation }
                                 dataAreaEnd := dataAreaEnd + stringSize;
                             tpArray:
                                 begin
